@@ -16,6 +16,8 @@ public class Cronometro implements Runnable
     private Boolean pausado;                // Para pausar el cronómetro
     private String salida;                  // Salida formateada de los datos del cronómetro
 
+    private Comunicacion_niveles comunicacion_niveles;
+
     /**
      * Constructor de la clase
      * @param nombre Nombre del cronómetro
@@ -25,12 +27,14 @@ public class Cronometro implements Runnable
     {
         etiq = etiqueta;
         salida = "";
-        segundos = 0;
+        segundos = 10;
         minutos = 0;
         horas = 0;
         nombrecronometro = nombre;
         escribirenUI = new Handler();
         pausado = Boolean.FALSE;
+
+
     }
 
     @Override
@@ -47,7 +51,7 @@ public class Cronometro implements Runnable
                 salida = "";
                 if( !pausado )
                 {
-                    segundos++;
+                    segundos--;
                     salida += segundos;
                     // Modifico la UI
                     try
@@ -57,7 +61,11 @@ public class Cronometro implements Runnable
                             @Override
                             public void run()
                             {
+                                if (salida.equals("-5")){
+
+                                }
                                 etiq.setText(salida);
+
                             }
                         });
                     }
@@ -79,7 +87,7 @@ public class Cronometro implements Runnable
      */
     public void reiniciar()
     {
-        segundos = 0;
+        segundos = 10;
         /*minutos = 0;
         horas = 0;*/
         pausado = Boolean.FALSE;
