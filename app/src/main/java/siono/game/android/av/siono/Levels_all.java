@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Levels_all extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView btn_1;
+    private final int intervalo =2000;
+    private long tiempoprimerclick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,17 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 startActivity(i);
                 break;
         }
+
+    }
+    //ACCION REALIZADA CUANDO SE PRECIONA EL BOTON DE REGRESAR
+    public void onBackPressed(){
+        if(tiempoprimerclick+intervalo>System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this,"Vuelve a aprecionar para salir",Toast.LENGTH_SHORT).show();
+        }
+        tiempoprimerclick = System.currentTimeMillis();
 
     }
 }

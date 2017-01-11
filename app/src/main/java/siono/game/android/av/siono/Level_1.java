@@ -198,19 +198,17 @@ Comunicacion_niveles{
     @Override
     public void fin_juego_set(int i) {
 
+
         intcaptado = i;
         Intent intent = new Intent(this,Calificacion.class);
 
         intent.putExtra("respuesta",i);
 
         startActivity(intent);
+        finish();
 
     }
 
-    public int findel_juego_get(){
-
-        return intcaptado;
-    }
 
     @Override
     public void onBackPressed(){
