@@ -61,11 +61,7 @@ public class Cronometro implements Runnable
                             @Override
                             public void run()
                             {
-                                if (salida.equals("-5")){
-
-                                }
-                                etiq.setText(salida);
-
+                                    etiq.setText(salida);
                             }
                         });
                     }

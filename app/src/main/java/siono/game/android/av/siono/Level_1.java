@@ -1,5 +1,6 @@
 package siono.game.android.av.siono;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,13 @@ import java.util.Random;
 public class Level_1 extends AppCompatActivity  implements View.OnClickListener,
         Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener,
 Comunicacion_niveles{
+
+    //variable creda para comunicar
+    public int intcaptado;
+
+    public Level_1(){
+        intcaptado =0;
+    }
 
 
     public ImageView vida,btn_si,btn_no,img_level_1,img_preg;
@@ -35,6 +43,14 @@ Comunicacion_niveles{
 
     //instanciar
     Evaluacion evaluacion;
+
+
+    //llamando a calificacion
+    Calificacion calificacion;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,10 @@ Comunicacion_niveles{
 
         //crear nuevo hilo
         tiempo();
+
+
+        //instanciar
+        calificacion = new Calificacion();
     }
 
     @Override
@@ -124,8 +144,9 @@ Comunicacion_niveles{
         }
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
         if(mal==3){
-            fin_juego(2);
+            fin_juego_set(2);
         }
+
 
         switch (mal){
             case 0:
@@ -143,8 +164,21 @@ Comunicacion_niveles{
 
     }
 
+    //como que este no sirbe para nada
     @Override
     public void respuestaFinal(int cantbuenas) {
+
+        int calif=0;
+
+        if(cantbuenas==imagenesfruver.length-1){
+            calif=0;
+
+        }else if(cantbuenas<=imagenesfruver.length-2){
+            calif=1;
+
+        }
+
+        fin_juego_set(calif);
 
     }
 
@@ -156,12 +190,26 @@ Comunicacion_niveles{
         if(cantidad<= imagenesfruver.length-1){
             img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
             img_level_1.setImageResource(imagenesfruver[p]);//aleatorio para la imagen
+        }else {
+            respuestaFinal(bien);
         }
     }
 
     @Override
-    public void fin_juego(int i) {
+    public void fin_juego_set(int i) {
 
+        intcaptado = i;
+        Intent intent = new Intent(this,Calificacion.class);
+
+        intent.putExtra("respuesta",i);
+
+        startActivity(intent);
+
+    }
+
+    public int findel_juego_get(){
+
+        return intcaptado;
     }
 
     @Override

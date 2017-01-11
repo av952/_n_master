@@ -39,7 +39,7 @@ public interface Comunicacion_niveles {
     void evaluacion();//evalua si la respuesta es correcta o no
     void respuestaFinal(int cantbuenas);//muestra imagen segun cantidad de buenas o malas
     void azar();//calcula al azar la imagen que se muestra
-    void fin_juego(int i);
+    void fin_juego_set(int i);
     void onBackPressed();
     void tiempo();
 }
