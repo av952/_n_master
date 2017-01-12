@@ -220,6 +220,8 @@ Comunicacion_niveles{
 
         intent.putExtra("respuesta",i);
 
+        cronometro.pause();
+
         startActivity(intent);
         finish();
 

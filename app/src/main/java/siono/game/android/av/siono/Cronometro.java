@@ -62,9 +62,6 @@ public class Cronometro implements Runnable
                             @Override
                             public void run()
                             {
-                                if(salida.equals("1")){
-                                    perdio();
-                                }
                                     etiq.setText(salida);
                             }
                         });
@@ -82,22 +79,17 @@ public class Cronometro implements Runnable
         }
     }
 
-    private void perdio() {
-
-        level_1.azar();
-    }
-
 
     /**
      * Reinicia el cronómetro
      */
     public void reiniciar()
-    {
-        segundos = 10;
+{
+    segundos = 10;
         /*minutos = 0;
         horas = 0;*/
-        pausado = Boolean.FALSE;
-    }
+    pausado = Boolean.FALSE;
+}
 
     /**
      * Pausa/Continua el cronómetro
