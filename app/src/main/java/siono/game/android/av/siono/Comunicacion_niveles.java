@@ -26,6 +26,16 @@ public interface Comunicacion_niveles {
 
     //IMAGENES RANDOM-------------------------------------LEVEL_2-----------------------------------
 
+    int[]imagenes_animales={
+      R.drawable.farms_webp_1,R.drawable.farms_webp_2,R.drawable.farms_webp_3,R.drawable.farms_webp_4,
+            R.drawable.farms_webp_5,R.drawable.farms_webp_6,R.drawable.farms_webp_7,R.drawable.home_webp_1,
+            R.drawable.home_webp_2,R.drawable.home_webp_3,R.drawable.home_webp_4,R.drawable.home_webp_5,
+            R.drawable.home_webp_6,R.drawable.home_webp_7,R.drawable.home_webp_8,R.drawable.home_webp_9,
+            R.drawable.home_webp_10,R.drawable.jungle_web_1,R.drawable.jungle_web_2,R.drawable.jungle_web_3,
+            R.drawable.jungle_web_4,R.drawable.jungle_web_5,R.drawable.jungle_web_6,R.drawable.jungle_web_7,
+            R.drawable.jungle_web_8,R.drawable.jungle_web_9,R.drawable.jungle_web_10,R.drawable.jungle_web_11,
+            R.drawable.jungle_web_12,R.drawable.jungle_web_13
+    };
 
 
 
