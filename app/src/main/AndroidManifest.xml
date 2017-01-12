@@ -28,7 +28,8 @@
         <activity
             android:name=".Level_1"
             android:screenOrientation="portrait" />
-        <activity android:name=".Calificacion"></activity>
+        <activity android:name=".Calificacion" />
+        <activity android:name=".Level_2"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,18 @@
 package siono.game.android.av.siono;
 
 import android.content.Intent;
+import android.graphics.Shader;
 import android.net.Uri;
+import android.service.quicksettings.Tile;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import org.xml.sax.XMLReader;
+
+import java.net.URLClassLoader;
 
 public class Calificacion extends AppCompatActivity implements Frag_levels.OnFragmentInteractionListener,
 Frag_home.OnFragmentInteractionListener,View.OnClickListener{
@@ -24,6 +30,9 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
             R.drawable.resp_pref_2_700x516,
             R.drawable.resp_bien_2_700x516,
             R.drawable.resp_fallo_2_700x516};
+
+
+    Tile tile;
 
 
     @Override

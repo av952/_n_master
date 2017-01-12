@@ -22,6 +22,15 @@ public interface Comunicacion_niveles {
             R.drawable.bpineapple256,R.drawable.braspberry256,
             R.drawable.bstrawberry256,R.drawable.btomato256, R.drawable.bwatermelon256
     };
+
+
+    //IMAGENES RANDOM-------------------------------------LEVEL_2-----------------------------------
+
+
+
+
+
+
     //ARRAY VIDAS----------------------------------------------------------------------------------
      int[] arrayvidas={
             R.drawable.vidas2_1,
