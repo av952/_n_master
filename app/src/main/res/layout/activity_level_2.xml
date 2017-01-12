@@ -65,7 +65,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/preg_fv"
+        android:id="@+id/preg_animal"
         android:src="@drawable/preg_fruta_188x66"
         android:layout_gravity="center"
         android:paddingBottom="10dp"

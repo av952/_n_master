@@ -133,6 +133,13 @@ Comunicacion_niveles{
         //int p = random.nextInt(imagenesfruver.length);//da una imagen random
        // int ran = random.nextInt(array_pregunta.length);//pregunta random
 
+        /*P ME MUESTRA UN NUMERO RANDOMPARA EVALUAR QUE FRUTA O VERDIURA SE ESTA MOSTRANDO
+        * OP ME MUESTRA LA OPCIÓN QUE SE OPREIMIO (SI O NO)
+        * CANTIDAD = LA CANTIDAD DE CLICKS QUE LLEVAN PARA SABER CUANDO ACABA EL JUEGO
+        * IMAGENESFRUVER ES DONDE SE ENCUENTRAN ALOJADAS LAS IMAGENES Y .LENGTH ME DA EL TAMAÑO
+        * -1 = LE GUITA UNA UNIDAD A EL ARRAY
+        * RAN ES UN ENTERO QUE ME DEVUELVE EL NÚMERO RAMDOM CON EL FIN DE SABER QUE SE PREGUNTA SI FRUTA O VERDURA*/
+
         if(p<=12 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//verdura/si/?verdura = bien
            ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
