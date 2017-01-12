@@ -17,6 +17,7 @@ public class Cronometro implements Runnable
     private String salida;                  // Salida formateada de los datos del cronómetro
 
     private Comunicacion_niveles comunicacion_niveles;
+    private Level_1 level_1= new Level_1();
 
     /**
      * Constructor de la clase
@@ -61,6 +62,9 @@ public class Cronometro implements Runnable
                             @Override
                             public void run()
                             {
+                                if(salida.equals("1")){
+                                    perdio();
+                                }
                                     etiq.setText(salida);
                             }
                         });
@@ -77,6 +81,12 @@ public class Cronometro implements Runnable
             Log.i("Cronometro", "Error en el cronometro " + nombrecronometro + ": " + e.toString());
         }
     }
+
+    private void perdio() {
+
+        level_1.azar();
+    }
+
 
     /**
      * Reinicia el cronómetro
