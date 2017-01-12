@@ -12,6 +12,7 @@
         android:src="@drawable/home32x32"
         android:paddingTop="10dp"
         android:layout_gravity="center"
+        android:adjustViewBounds="true"
         />
 
 </FrameLayout>

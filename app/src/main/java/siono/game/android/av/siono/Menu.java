@@ -62,6 +62,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
                 sp.play(flujoDeMusica,1,1,0,0,1);
                 Intent i = new Intent(this,Levels_all.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.btncreditos:
                 sp.play(flujoDeMusica,1,1,0,0,1);

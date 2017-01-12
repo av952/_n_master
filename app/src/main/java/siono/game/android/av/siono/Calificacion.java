@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Calificacion extends AppCompatActivity implements Frag_levels.OnFragmentInteractionListener,
-Frag_home.OnFragmentInteractionListener{
+Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     private int calificacion_int;
     private ImageView img_calif;
@@ -42,6 +43,8 @@ Frag_home.OnFragmentInteractionListener{
         img_calif = (ImageView)findViewById(R.id.img_calificada);
         img_calif.setImageResource(respuestacalifica2[res]);
 
+        img_calif.setOnClickListener(this);
+
 
     }
 
@@ -70,4 +73,12 @@ Frag_home.OnFragmentInteractionListener{
         tiempoprimerclick = System.currentTimeMillis();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_calificada:
+                Intent i = new Intent(this,Levels_all.class);
+                startActivity(i);
+        }
+    }
 }
