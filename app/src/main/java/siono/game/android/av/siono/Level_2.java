@@ -1,16 +1,70 @@
 package siono.game.android.av.siono;
 
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles {
+import java.util.Random;
 
-    private int p,op,cantidad,ran;
+public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles,View.OnClickListener,
+Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener{
+
+    private int p,op,cantidad,ran,bien,mal,cuantasvidas;
+    private ImageView vida,btn_si,btn_no,img_level_1,img_preg;
+    public TextView mi_crono;
+    private Random random = new Random();
+    private long tiempoprimerclick;//para el metodo onbackpresed
+    //llamando a calificacion
+    Calificacion calificacion;
+    //soundpoll
+    private SoundPool ok,no;
+    private int flujoDeMusica;
+
+    //PARA INSTANCIAR EL CRONOMETRO
+    private Cronometro cronometro = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_2);
+
+        btn_no =(ImageView)findViewById(R.id.btnno);
+        btn_no.setOnClickListener(this);
+        btn_si =(ImageView)findViewById(R.id.btnsi);
+        btn_si.setOnClickListener(this);
+        //VIDA
+        vida = (ImageView)findViewById(R.id.vidas);
+        //IMAGENES DEL CENTRO
+        img_level_1 = (ImageView)findViewById(R.id.imagenes_level_1);
+        //IMG PREGUNTA
+        img_preg = (ImageView)findViewById(R.id.preg_animal);
+        //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
+        mi_crono =  (TextView)findViewById(R.id.microno);//es importante hacer el llamado
+
+        //PARA QUE LA PRIMERA IMAGEN SEA RANDOM
+        azar();
+        //LLAMA AL METODO DENTRO DE ESTA CLASE QUE CREA EL NUEVO HILO
+        tiempo();
+
+        //instanciar
+        calificacion = new Calificacion();
+
+        //SOUNDPOOL infantil ok
+        ok = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = ok.load(this,R.raw.oknino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+
+        //SOUNDPOOL infantil no
+        no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
     }
 
     @Override
@@ -61,22 +115,90 @@ public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles 
     }
 
     @Override
+    /*ESTE METODO QUE ES LLAMADO DE LA INTERFAZ COMUNICACIÓN NIVELES
+    * ME ASIGNA UNA CALIFICACIÓN DEPENDIENDO EL NUMERO DE MALAS O BUENAS QUE TENGA*/
     public void respuestaFinal(int cantbuenas) {
+        int calif=0;
+
+        if(cantbuenas==imagenesfruver.length-1){
+            calif=0;
+
+        }else if(cantbuenas<=imagenesfruver.length-2){
+            calif=1;
+
+        }
+
+        fin_juego_set(calif);
 
     }
 
     @Override
+    /*ESTE METODO GENERAL UNA IMAGEN AL AZAR PARA SER MOSTRADA EN PANTALLA
+    * GENERA TANTO LA PREGUNTA COMO LA IMAGEN CENTRAL*/
     public void azar() {
+        p = random.nextInt(imagenesfruver.length);//da una imagen random
+        ran = random.nextInt(array_pregunta.length);//pregunta random
+
+        if(cantidad<= imagenesfruver.length-1){
+            img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
+            img_level_1.setImageResource(imagenesfruver[p]);//aleatorio para la imagen
+        }else {
+            respuestaFinal(bien);
+        }
 
     }
 
     @Override
     public void fin_juego_set(int i) {
 
+        Intent intent = new Intent(this,Calificacion.class);
+        /*PARA PODER TRANSFERIR INFORMACIÓN DE UNA VARIABLE A OTRA ES IMPORTANTE COLOCAR
+        * PUTEXTRA (EL QUE LA RECIBE COLOCA PUT GET Y OTRO METODO DONDE ALMACENA
+        * TODO LO QUE SE LE ESTA ENVIANDO*/
+
+        intent.putExtra("respuesta",i);
+
+        //SE PAUSA EL CRONOMETRO DEL NUEVO ILO CREADO
+        cronometro.pause();
+
+        //SE INICA LA ACTIVIDAD
+        startActivity(intent);
+        /*SE FINALIZA ESTA ACTIVIDAD CON EL FIN DE QUE QUE NO SE VUELVA A MOSTRAR
+        * AL PRECIONAR EL BOTON ATRAS*/
+        finish();
+
     }
 
     @Override
     public void tiempo() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnsi:
+                cronometro.reiniciar();
+                op=1;
+                cantidad++;
+                evaluacion();
+                azar();
+
+                break;
+            case R.id.btnno:
+                cronometro.reiniciar();
+                op=2;
+                cantidad++;
+                evaluacion();
+                azar();
+
+                break;
+        }
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

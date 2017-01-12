@@ -32,7 +32,7 @@ Comunicacion_niveles{
     private int op, cantidad;//op=opcion escogida(button),cantidad=cantidad de clicks
     private int mal,bien,cuantasvidas,p,ran;
 
-    private long tiempoprimerclick;//para el metodo onbacpresed
+    private long tiempoprimerclick;//para el metodo onbackpresed
 
 
     public int c;//para enviar cantidad
@@ -74,6 +74,7 @@ Comunicacion_niveles{
         //IMG PREGUNTA
         img_preg = (ImageView)findViewById(R.id.preg_fv);
 
+        //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
         mi_crono =  (TextView)findViewById(R.id.microno);//es importante hacer el llamado
 
         //iniciar
@@ -170,7 +171,8 @@ Comunicacion_niveles{
             fin_juego_set(2);
         }
 
-
+        /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
+        * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
         switch (mal){
             case 0:
                 cuantasvidas=2;
