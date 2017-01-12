@@ -79,6 +79,9 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
             case R.id.img_calificada:
                 Intent i = new Intent(this,Levels_all.class);
                 startActivity(i);
+                finish();
+                break;
+
         }
     }
 }

@@ -110,6 +110,7 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
             case R.id.btn_levels:
                 Intent i = new Intent(getActivity(),Levels_all.class);
                 startActivity(i);
+
                 break;
         }
 

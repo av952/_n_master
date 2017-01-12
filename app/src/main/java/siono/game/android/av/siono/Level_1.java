@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +50,10 @@ Comunicacion_niveles{
     //llamando a calificacion
     Calificacion calificacion;
 
+    //soundpoll
+    private SoundPool ok,no;
+    private int flujoDeMusica;
+
 
 
 
@@ -80,6 +86,16 @@ Comunicacion_niveles{
 
         //instanciar
         calificacion = new Calificacion();
+
+        //SOUNDPOOL infantil ok
+        ok = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = ok.load(this,R.raw.oknino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+        //SOUNDPOOL infantil no
+        no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
     }
 
     @Override
@@ -118,28 +134,28 @@ Comunicacion_niveles{
        // int ran = random.nextInt(array_pregunta.length);//pregunta random
 
         if(p<=12 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//verdura/si/?verdura = bien
-           // ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
+           ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
         }else if(p<=12 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//verdura/no verdura/ = mal
-           // no.play(flujoDeMusica,1,1,0,0,1);
+           no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }else if(p<=12 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//verdura/si/fruta = mal
-          //  no.play(flujoDeMusica,1,1,0,0,1);
+          no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }else if(p<=12 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//verdura/no/fruta =bien
-           // ok.play(flujoDeMusica,1,1,0,0,1);
+           ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }else if(p>=13&& op==1 && cantidad<=imagenesfruver.length-1&& ran==0){
-           // ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
+           ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
         }else if(p>=13 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){
-           // no.play(flujoDeMusica,1,1,0,0,1);
+           no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }else if(p>=13 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){
-          //  no.play(flujoDeMusica,1,1,0,0,1);
+          no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }else if(p>=13 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){
-          //  ok.play(flujoDeMusica,1,1,0,0,1);
+          ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------

@@ -11,18 +11,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:background="@color/gris"
+        android:paddingBottom="5dp"
 
-        ></LinearLayout>
+        >
 
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:src="@drawable/btn_frutaverdura_colors"
-        android:id="@+id/btn_level_1"
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="siono.game.android.av.siono.Frag_home"
+            android:id="@+id/fragment5"
+            android:layout_weight="1"
 
-        />
+            tools:layout="@layout/fragment_frag_home" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:orientation="vertical"
+
+        >
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_frutaverdura_colors"
+            android:id="@+id/btn_level_1"
+            android:adjustViewBounds="true"
+
+            />
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_frutaverdura_colors"
+            android:id="@+id/btn_level_2"
+            android:adjustViewBounds="true"
+
+            />
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_frutaverdura_colors"
+            android:id="@+id/btn_level_3"
+            android:adjustViewBounds="true"
+
+
+            />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
