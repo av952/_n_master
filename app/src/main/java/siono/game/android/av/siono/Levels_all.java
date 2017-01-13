@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class Levels_all extends AppCompatActivity implements View.OnClickListener,Frag_home.OnFragmentInteractionListener{
 
-    private ImageView btn_1;
+    private ImageView btn_1,btn_2,btn_3;
     private final int intervalo =2000;
     private long tiempoprimerclick;
 
@@ -23,6 +23,10 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
         btn_1 =(ImageView)findViewById(R.id.btn_level_1);
         btn_1.setOnClickListener(this);
+        btn_2 = (ImageView)findViewById(R.id.btn_level_2);
+        btn_2.setOnClickListener(this);
+
+
 
     }
 

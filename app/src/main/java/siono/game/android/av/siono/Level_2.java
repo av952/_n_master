@@ -16,7 +16,7 @@ public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles,
 Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener{
 
     private int p,op,cantidad,ran,bien,mal,cuantasvidas;
-    private ImageView vida,btn_si,btn_no,img_level_1,img_preg;
+    private ImageView vida,btn_si,btn_no, img_level_2,img_preg;
     public TextView mi_crono;
     private Random random = new Random();
     private long tiempoprimerclick;//para el metodo onbackpresed
@@ -41,7 +41,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         //VIDA
         vida = (ImageView)findViewById(R.id.vidas);
         //IMAGENES DEL CENTRO
-        img_level_1 = (ImageView)findViewById(R.id.imagenes_level_1);
+        img_level_2 = (ImageView)findViewById(R.id.imagenes_level_2);
         //IMG PREGUNTA
         img_preg = (ImageView)findViewById(R.id.preg_animal);
         //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
@@ -136,12 +136,12 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     /*ESTE METODO GENERAL UNA IMAGEN AL AZAR PARA SER MOSTRADA EN PANTALLA
     * GENERA TANTO LA PREGUNTA COMO LA IMAGEN CENTRAL*/
     public void azar() {
-        p = random.nextInt(imagenesfruver.length);//da una imagen random
+        p = random.nextInt(imagenes_animales.length);//da una imagen random
         ran = random.nextInt(array_pregunta.length);//pregunta random
 
-        if(cantidad<= imagenesfruver.length-1){
+        if(cantidad<= imagenes_animales.length-1){
             img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
-            img_level_1.setImageResource(imagenesfruver[p]);//aleatorio para la imagen
+            img_level_2.setImageResource(imagenes_animales[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);
         }

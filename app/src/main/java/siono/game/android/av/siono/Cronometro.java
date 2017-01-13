@@ -16,8 +16,6 @@ public class Cronometro implements Runnable
     private Boolean pausado;                // Para pausar el cronómetro
     private String salida;                  // Salida formateada de los datos del cronómetro
 
-    private Comunicacion_niveles comunicacion_niveles;
-    private Level_1 level_1= new Level_1();
 
     /**
      * Constructor de la clase
