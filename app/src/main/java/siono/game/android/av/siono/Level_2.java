@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import java.util.Random;
 public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles,View.OnClickListener,
 Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener{
 
-    private int p,op,cantidad,ran,bien,mal,cuantasvidas;
+    private int p,op,cantidad,ran,bien,mal,cuantasvidas,pre;
     private ImageView vida,btn_si,btn_no, img_level_2,img_preg;
     public TextView mi_crono;
     private Random random = new Random();
@@ -28,6 +29,14 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     //PARA INSTANCIAR EL CRONOMETRO
     private Cronometro cronometro = null;
+
+    //BOTTON QUE MUESTRA LA PREGUNTA
+    private Button btn_pregunta;
+    //OPCION ALEATORIA PARA LA RPEGUNTA ECHO CON STRINGS
+
+
+    String[] array_preguntas2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +52,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         //IMAGENES DEL CENTRO
         img_level_2 = (ImageView)findViewById(R.id.imagenes_level_2);
         //IMG PREGUNTA
-        img_preg = (ImageView)findViewById(R.id.preg_animal);
+        //img_preg = (ImageView)findViewById(R.id.preg_animal);
         //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
         mi_crono =  (TextView)findViewById(R.id.microno);//es importante hacer el llamado
 
@@ -65,37 +74,48 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
         flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+
+        //boton de la pregunta
+        btn_pregunta = (Button)findViewById(R.id.preguntas);
+        //btn_pregunta.setText(array_preguntas2[1]);
+
+        array_preguntas2= new String[]{
+          "casero",
+                "granja",
+                "salvaje"
+        };
     }
 
     @Override
     public void evaluacion() {
-        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//granja/si/granja=si
+        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/si/granja=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//granja/no/granja=no
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//granja/si/hogar=no
+        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//granja/si/hogar=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//granja/no/no granja=si
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//granja/no/no granja=si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
-        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//hogar/si/hogar=si
+        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/si/hogar=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//hogar/no/hogar=no
+        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/no/hogar=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//hogar/si/no es hogar=no
+        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//hogar/si/no es hogar=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//hogar/no/no es hogar = si
+        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//hogar/no/no es hogar = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
 
-        else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==2){//hogar/no/no es hogar = si
+        else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//hogar/no/no es hogar = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
@@ -142,11 +162,16 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     /*ESTE METODO GENERAL UNA IMAGEN AL AZAR PARA SER MOSTRADA EN PANTALLA
     * GENERA TANTO LA PREGUNTA COMO LA IMAGEN CENTRAL*/
     public void azar() {
+
+        //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
+        //pre= random.nextInt(array_preguntas2.length);
+
         p = random.nextInt(imagenes_animales.length);//da una imagen random
         ran = random.nextInt(array_pregunta.length);//pregunta random
 
         if(cantidad<= imagenes_animales.length-1){
-            img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
+            //img_preg.setImageResource(array_pregunta[pre]);//aleatorio para la pregunta
+            //btn_pregunta.setText(array_preguntas2[pre]);
             img_level_2.setImageResource(imagenes_animales[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);

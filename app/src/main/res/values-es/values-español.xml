@@ -2,4 +2,10 @@
 <resources>
 
     <string name="hello_blank_fragment">hola frarmento blanc</string>
+
+    <string name="granja">GRANJA</string>
+    <string name="salvaje">SALVAJE</string>
+    <string name="fruta">FRUTA</string>
+    <string name="verdura">VERDURA</string>
+    <string name="casero">CASERO</string>
 </resources>

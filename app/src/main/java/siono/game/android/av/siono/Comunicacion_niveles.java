@@ -1,5 +1,7 @@
 package siono.game.android.av.siono;
 
+import android.text.GetChars;
+
 /**
  * Created by Usuario on 11/01/2017.
  */
@@ -35,6 +37,13 @@ public interface Comunicacion_niveles {
             R.drawable.jungle_web_4,R.drawable.jungle_web_5,R.drawable.jungle_web_6,R.drawable.jungle_web_7,
             R.drawable.jungle_web_8,R.drawable.jungle_web_9,R.drawable.jungle_web_10,R.drawable.jungle_web_11,
             R.drawable.jungle_web_12,R.drawable.jungle_web_13
+    };
+
+
+    int[] array_preguntas2 ={
+            R.string.granja,
+            R.string.casero,
+            R.string.salvaje
     };
 
 
