@@ -69,31 +69,37 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     @Override
     public void evaluacion() {
-        if(p<=12 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//verdura/si/?verdura = bien
-            //ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
+        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//granja/si/granja=si
+            ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p<=12 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//verdura/no verdura/ = mal
-           // no.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//granja/no/granja=no
+           no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=12 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//verdura/si/fruta = mal
-            //no.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//granja/si/hogar=no
+            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=12 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//verdura/no/fruta =bien
-            //ok.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//granja/no/no granja=si
+            ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
-        }else if(p>=13&& op==1 && cantidad<=imagenesfruver.length-1&& ran==0){
-            //ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
+        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& ran==0){//hogar/si/hogar=si
+            ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p>=13 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){
-            //no.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==0){//hogar/no/hogar=no
+            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>=13 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){
-            //no.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& ran==1){//hogar/si/no es hogar=no
+            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>=13 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){
-            //ok.play(flujoDeMusica,1,1,0,0,1);
+        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==1){//hogar/no/no es hogar = si
+            ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
+
+        else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& ran==2){//hogar/no/no es hogar = si
+            ok.play(flujoDeMusica,1,1,0,0,1);
+            bien++;
+        }
+
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
         if(mal==3){
             fin_juego_set(2);
