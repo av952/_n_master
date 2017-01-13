@@ -34,6 +34,11 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 startActivity(i);
                 finish();
                 break;
+            case R.id.btn_level_2:
+                Intent i2 = new Intent(this,Level_2.class);
+                startActivity(i2);
+                finish();
+                break;
         }
 
     }

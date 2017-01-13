@@ -171,6 +171,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     @Override
     public void tiempo() {
+        if(cronometro==null){
+            cronometro = new Cronometro("cronometro",mi_crono);
+            new Thread(cronometro).start();
+        }
 
     }
 
