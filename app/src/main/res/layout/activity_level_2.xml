@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnno"
             android:layout_weight="1"
-            android:src="@drawable/btn_no"
+            android:src="@drawable/btn_no_nuevo"
             android:adjustViewBounds="true"
             />
 

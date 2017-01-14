@@ -46,7 +46,7 @@ public class Cronometro implements Runnable
         {
             while(Boolean.TRUE)
             {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 salida = "";
                 if( !pausado )
                 {

@@ -47,7 +47,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_play"
+            android:src="@drawable/btn_level_imgs"
             android:id="@+id/btnHtp"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
