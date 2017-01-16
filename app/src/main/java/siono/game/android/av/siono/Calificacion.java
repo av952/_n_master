@@ -56,9 +56,17 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         //se asigna los datos tomados a nuevas cariables
         int res = datos.getInt("respuesta");
 
+        //recogiendo datos de cronometro2
+        Bundle datos2 = this.getIntent().getExtras();
+        int res2 = datos2.getInt("cronometro2");
+
+
+
+
         img_calif = (ImageView)findViewById(R.id.img_calificada);
         tv_califica = (TextView)findViewById(R.id.txt_respuesta);
-        tv_califica.setText(array_respuesta_txt[res]);
+        //tv_califica.setText(array_respuesta_txt[res]);
+        tv_califica.setText(Integer.toString(res2));
         img_calif.setImageResource(respuestacalifica2[res]);
 
         img_calif.setOnClickListener(this);

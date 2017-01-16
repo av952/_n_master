@@ -4,27 +4,22 @@ import android.util.Log;
 import android.widget.TextView;
 
 
-public class Cronometro implements Runnable
+public class Cronometro_2 implements Runnable
 {
     // Atributos privados de la clase
-    private TextView etiq;                  // Etiqueta para mostrar la información
+    //private TextView etiq;            // Etiqueta para mostrar la información
     private String nombrecronometro;        // Nombre del cronómetro
-    private int segundos, minutos, horas;   // Segundos, minutos y horas que lleva activo el cronómetro
+    public int segundos, minutos, horas;   // Segundos, minutos y horas que lleva activo el cronómetro
     private Handler escribirenUI;           // Necesario para modificar la UI
     private Boolean pausado;                // Para pausar el cronómetro
-    private String salida;                  // Salida formateada de los datos del cronómetro
+    public String salida;                  // Salida formateada de los datos del cronómetro
 
 
-    /**
-     * Constructor de la clase
-     * @param nombre Nombre del cronómetro
-     * @param etiqueta Etiqueta para mostrar información
-     */
-    public Cronometro(String nombre, TextView etiqueta)
+    public Cronometro_2(String nombre)
     {
-        etiq = etiqueta;
+        //etiq = etiqueta;
         salida = "";
-        segundos = 10;
+        segundos = 0;
         minutos = 0;
         horas = 0;
         nombrecronometro = nombre;
@@ -44,12 +39,13 @@ public class Cronometro implements Runnable
         {
             while(Boolean.TRUE)
             {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 salida = "";
                 if( !pausado )
                 {
-                    segundos--;
-                    salida += segundos;
+                    segundos++;
+                    set_seconds(segundos);
+                    //salida += segundos;
                     // Modifico la UI
                     try
                     {
@@ -58,7 +54,7 @@ public class Cronometro implements Runnable
                             @Override
                             public void run()
                             {
-                                    etiq.setText(salida);
+                               // set_seconds(segundos);
                             }
                         });
                     }
@@ -80,12 +76,12 @@ public class Cronometro implements Runnable
      * Reinicia el cronómetro
      */
     public void reiniciar()
-{
-    segundos = 10;
+    {
+        segundos = 10;
         /*minutos = 0;
         horas = 0;*/
-    pausado = Boolean.FALSE;
-}
+        pausado = Boolean.FALSE;
+    }
 
     /**
      * Pausa/Continua el cronómetro
@@ -94,5 +90,17 @@ public class Cronometro implements Runnable
     {
         pausado = !pausado;
     }
+
+    public int get_seconds(){
+        ///set_seconds();
+        return segundos;
+    }
+
+    public void set_seconds(int seg){
+
+        this.segundos = seg;
+
+    }
+
 
 }

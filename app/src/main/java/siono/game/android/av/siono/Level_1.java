@@ -1,6 +1,7 @@
 package siono.game.android.av.siono;
 
 import android.content.Intent;
+import android.database.CrossProcessCursor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -43,6 +44,9 @@ Comunicacion_niveles{
     public int tam,can;
 
     private Cronometro cronometro = null;
+    private Cronometro_2 cronometro_2= null;
+
+
 
     //instanciar
     Evaluacion evaluacion;
@@ -58,6 +62,9 @@ Comunicacion_niveles{
     //BUTON PARA PREGUNTA ALEATORIA
     private Button btn_preguntas;
 
+
+
+    int traedato;
 
 
 
@@ -236,7 +243,10 @@ Comunicacion_niveles{
         intcaptado = i;
         Intent intent = new Intent(this,Calificacion.class);
 
+        traedato  = cronometro_2.get_seconds();
+
         intent.putExtra("respuesta",i);
+        intent.putExtra("cronometro2",traedato);
 
         cronometro.pause();
 
@@ -263,6 +273,10 @@ Comunicacion_niveles{
         if(cronometro==null){
             cronometro = new Cronometro("cronometro",mi_crono);
             new Thread(cronometro).start();
+        }
+        if(cronometro_2==null){
+            cronometro_2 = new Cronometro_2("cronometro_2");
+            new Thread(cronometro_2).start();
         }
     }
 }
