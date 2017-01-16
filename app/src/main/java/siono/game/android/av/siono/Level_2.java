@@ -6,6 +6,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,11 +32,14 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     private Cronometro cronometro = null;
 
     //BOTTON QUE MUESTRA LA PREGUNTA
-    private Button btn_pregunta;
+    public Button btn_preguntado;
     //OPCION ALEATORIA PARA LA RPEGUNTA ECHO CON STRINGS
 
 
-    String[] array_preguntas2;
+
+    //creando array para selecion de preguntas alaeatorias
+    //String[] array_preguntas_cambiantes;
+    String cambio;
 
 
     @Override
@@ -77,14 +81,8 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
 
         //boton de la pregunta
-        btn_pregunta = (Button)findViewById(R.id.preguntas);
-        //btn_pregunta.setText(array_preguntas2[1]);
+        btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
 
-        array_preguntas2= new String[]{
-          "casero",
-                "granja",
-                "salvaje"
-        };
     }
 
     @Override
@@ -95,10 +93,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//granja/si/hogar=no
+        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//granja/no/no granja=si
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//granja/no/hogar/salvaje=si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/si/hogar=si
@@ -107,15 +105,27 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/no/hogar=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//hogar/si/no es hogar=no
+        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/si/granja/salvaje=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//hogar/no/no es hogar = si
+        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/no/no es hogar = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
 
-        else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//hogar/no/no es hogar = si
+        else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/si/salvaje = si
+            ok.play(flujoDeMusica,1,1,0,0,1);
+            bien++;
+        }
+        else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/no/salvaje = no
+            no.play(flujoDeMusica,1,1,0,0,1);
+            bien++;
+        }
+        else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/si/salvaje = no
+            no.play(flujoDeMusica,1,1,0,0,1);
+            bien++;
+        }
+        else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/no/salvaje = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
@@ -164,14 +174,19 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     public void azar() {
 
         //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
-        //pre= random.nextInt(array_preguntas2.length);
+        pre= random.nextInt(probandoestootro.length);
 
         p = random.nextInt(imagenes_animales.length);//da una imagen random
         ran = random.nextInt(array_pregunta.length);//pregunta random
 
         if(cantidad<= imagenes_animales.length-1){
+            //btn_preguntado.setText(cambio);
+            btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
+            btn_preguntado.setText(probandoestootro[pre]);
+
+
             //img_preg.setImageResource(array_pregunta[pre]);//aleatorio para la pregunta
-            //btn_pregunta.setText(array_preguntas2[pre]);
+            //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
             img_level_2.setImageResource(imagenes_animales[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);

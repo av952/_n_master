@@ -65,7 +65,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/preguntas"
+        android:id="@+id/elbotonquepregunta"
         android:layout_gravity="center"
         android:background="@drawable/basebotones_2"
         android:text="@string/granja"
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnno"
             android:layout_weight="1"
-            android:src="@drawable/btn_no_nuevo"
+            android:src="@drawable/btn_no"
             android:adjustViewBounds="true"
             />
 

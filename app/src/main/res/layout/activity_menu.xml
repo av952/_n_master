@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_level_imgs"
-            android:id="@+id/btnHtp"
+            android:id="@+id/creditos"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
             android:layout_weight="1"
@@ -59,7 +59,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_play"
+            android:src="@drawable/btn_level_imgs"
             android:id="@+id/btncreditos"
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"

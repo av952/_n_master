@@ -39,15 +39,12 @@ public interface Comunicacion_niveles {
             R.drawable.jungle_web_12,R.drawable.jungle_web_13
     };
 
-
-    int[] array_preguntas2 ={
-            R.string.granja,
+    //preguntas
+    int[]probandoestootro={
             R.string.casero,
-            R.string.salvaje
+            R.string.granja,
+            R.string.salvaje,
     };
-
-
-
 
 
     //ARRAY VIDAS----------------------------------------------------------------------------------
