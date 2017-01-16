@@ -17,7 +17,7 @@ import android.view.ViewGroup;
  * Use the {@link Frag_creditos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Frag_creditos extends Fragment {
+public class Frag_creditos extends Fragment implements Frag_levels.OnFragmentInteractionListener,Frag_home.OnFragmentInteractionListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -89,6 +89,11 @@ public class Frag_creditos extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**

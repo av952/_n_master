@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.xml.sax.XMLReader;
@@ -31,6 +32,14 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
             R.drawable.resp_bien_2_700x516,
             R.drawable.resp_fallo_2_700x516};
 
+    private int[] array_respuesta_txt={
+      R.string.perfecto,
+            R.string.bien_echo,
+            R.string.fallaste
+
+    };
+
+    private TextView tv_califica;
 
     Tile tile;
 
@@ -47,9 +56,9 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         //se asigna los datos tomados a nuevas cariables
         int res = datos.getInt("respuesta");
 
-
-
         img_calif = (ImageView)findViewById(R.id.img_calificada);
+        tv_califica = (TextView)findViewById(R.id.txt_respuesta);
+        tv_califica.setText(array_respuesta_txt[res]);
         img_calif.setImageResource(respuestacalifica2[res]);
 
         img_calif.setOnClickListener(this);

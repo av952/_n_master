@@ -42,6 +42,8 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     String cambio;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,8 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         //boton de la pregunta
         btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
+
+
 
     }
 

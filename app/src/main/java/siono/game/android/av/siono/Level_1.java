@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,8 @@ Comunicacion_niveles{
     private SoundPool ok,no;
     private int flujoDeMusica;
 
+    //BUTON PARA PREGUNTA ALEATORIA
+    private Button btn_preguntas;
 
 
 
@@ -62,6 +65,11 @@ Comunicacion_niveles{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_1);
+
+        //BUTON PARA PREGUNTA ALEATORIA
+        btn_preguntas = (Button)findViewById(R.id.elbotonquepregunta);
+
+
         //BOTONES
         btn_no =(ImageView)findViewById(R.id.btnno);
         btn_no.setOnClickListener(this);
@@ -72,14 +80,13 @@ Comunicacion_niveles{
         //IMAGENES DEL CENTRO
         img_level_1 = (ImageView)findViewById(R.id.imagenes_level_1);
         //IMG PREGUNTA
-        img_preg = (ImageView)findViewById(R.id.preg_fv);
+        //img_preg = (ImageView)findViewById(R.id.preg_fv);
 
         //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
         mi_crono =  (TextView)findViewById(R.id.microno);//es importante hacer el llamado
 
         //iniciar
         azar();
-
 
         //crear nuevo hilo
         tiempo();
@@ -213,7 +220,9 @@ Comunicacion_niveles{
         ran = random.nextInt(array_pregunta.length);//pregunta random
 
         if(cantidad<= imagenesfruver.length-1){
-            img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
+            //img_preg.setImageResource(array_pregunta[ran]);//aleatorio para la pregunta
+
+            btn_preguntas.setText(array_pregunta[ran]);
             img_level_1.setImageResource(imagenesfruver[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);

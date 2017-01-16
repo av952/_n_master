@@ -55,8 +55,8 @@ public interface Comunicacion_niveles {
     };
 
      int[]array_pregunta={
-            R.drawable.preg_fruta_188x66,
-            R.drawable.preg_verdura_188x66
+            R.string.fruta,
+             R.string.verdura
     };
 
 

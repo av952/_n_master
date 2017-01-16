@@ -7,4 +7,10 @@
     <string name="verdura">VEGETABLE</string>
     <string name="casero">HOME</string>
 
+
+
+    <string name="bien_echo">GOOD JOB</string>
+    <string name="fallaste">YOU FAILED</string>
+    <string name="perfecto">PERFECT</string>
+
 </resources>

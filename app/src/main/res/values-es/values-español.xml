@@ -8,4 +8,17 @@
     <string name="fruta">FRUTA</string>
     <string name="verdura">VERDURA</string>
     <string name="casero">CASERO</string>
+
+
+    <string name="creditos">
+        Desarrollador: AVXC
+        Diseño: AVXC
+        Apartado gráfico (frutas,verduras,animales) Freepik  -http://www.freepik.com
+    </string>
+
+    <string name="bien_echo">BIEN ECHO</string>
+    <string name="fallaste">FALLASTE</string>
+    <string name="perfecto">PERFECTO</string>
+
+
 </resources>

@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class Menu extends AppCompatActivity implements View.OnClickListener,Levels.OnFragmentInteractionListener{
+public class Menu extends AppCompatActivity implements View.OnClickListener,Levels.OnFragmentInteractionListener,
+Frag_creditos.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener,
+Frag_home.OnFragmentInteractionListener{
 
     ImageView btnbegin,btnhtp,btnlevels;
     public SoundPool sp;
@@ -21,9 +23,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
     private long tiempoprimerclick;
 
     FragmentManager fragmentManager;
-    FragmentTransaction fragTran_Levels;
+    FragmentTransaction fragTran_Creditos;
     //Frac_htp frac1;
     Levels levels;
+    Frag_creditos frag_creditos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
 
         //se crea la interfas grafica
         btnbegin =(ImageView) findViewById(R.id.btnBegin);
-        btnhtp =(ImageView) findViewById(R.id.btnHtp);
+        //btnhtp =(ImageView) findViewById(R.id.btnHtp);
         btnlevels =(ImageView) findViewById(R.id.btncreditos);
         btnbegin.setOnClickListener(this);
-        btnhtp.setOnClickListener(this);
+        //btnhtp.setOnClickListener(this);
         btnlevels.setOnClickListener(this);
 
         //SOUNDPOOL BUTTONS
@@ -44,20 +47,20 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
         flujoDeMusica = sp.load(this,R.raw.click,1);
 
         //FRAGMENT
-        /*
+
         fragmentManager = getSupportFragmentManager();
-        fragTran_Levels = fragmentManager.beginTransaction();
-        levels = new Levels();//relaiona el fragmento
-        fragTran_Levels.replace(R.id.contenedorenmain,levels);*/
+        fragTran_Creditos = fragmentManager.beginTransaction();
+        frag_creditos = new Frag_creditos();//relaiona el fragmento
+        fragTran_Creditos.replace(R.id.contenedorenmain,frag_creditos);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnHtp:
+            /*case R.id.btnHtp:
                 sp.play(flujoDeMusica,1,1,0,0,1);
                 //fragmentTransaction.commit();
-                break;
+                break;*/
             case R.id.btnBegin:
                 sp.play(flujoDeMusica,1,1,0,0,1);
                 Intent i = new Intent(this,Levels_all.class);
@@ -66,8 +69,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
                 break;
             case R.id.btncreditos:
                 sp.play(flujoDeMusica,1,1,0,0,1);
-                Intent ir3 = new Intent(this,Levels.class);
-                startActivity(ir3);
+               /* Intent ir3 = new Intent(this,Frag_creditos.class);
+                startActivity(ir3);*/
+
+                fragTran_Creditos.commit();
                 break;
 
         }

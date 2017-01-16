@@ -4,7 +4,7 @@
     android:id="@+id/activity_level_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLevels"
+    android:background="@color/niveles"
     android:orientation="vertical"
     android:weightSum="6"
     tools:context="siono.game.android.av.siono.Level_1">
@@ -62,13 +62,16 @@
         android:layout_weight="1"
         />
 
-    <ImageView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/preg_fv"
-        android:src="@drawable/preg_fruta_188x66"
+        android:id="@+id/elbotonquepregunta"
         android:layout_gravity="center"
-        android:paddingBottom="10dp"
+        android:background="@drawable/basebotones_2"
+        android:text="@string/fruta"
+        android:textSize="50sp"
+        android:textColor="@color/blanco"
+        android:layout_marginBottom="10dp"
         />
 
     <LinearLayout
@@ -85,6 +88,7 @@
             android:layout_weight="1"
             android:src="@drawable/aasparagus256"
             android:layout_gravity="center"
+            android:background="@color/gris"
             />
 
 
