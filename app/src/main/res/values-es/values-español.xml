@@ -20,7 +20,7 @@
     <string name="fallaste">FALLASTE</string>
     <string name="perfecto">PERFECTO</string>
 
-    <string name="mensaje_cantidad">lo lograste en:</string>
+    <string name="mensaje_cantidad">Terminaste en:</string>
 
 
 </resources>

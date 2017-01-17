@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Shader;
 import android.net.Uri;
 import android.service.quicksettings.Tile;
@@ -25,6 +27,13 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
     private final int intervalo =2000;
     private long tiempoprimerclick;
 
+
+    //VARIABLES PARA GURDAR PUNTUACION
+    private int  max =0;
+
+
+    private int res,res2;
+
     private Level_1 level_1 = new Level_1();
 
     private int[] respuestacalifica2={
@@ -43,7 +52,6 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     Tile tile;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,26 +62,51 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         //toma el paquete de datos de la actividad que la llamo
         Bundle datos = this.getIntent().getExtras();
         //se asigna los datos tomados a nuevas cariables
-        int res = datos.getInt("respuesta");
+        res = datos.getInt("respuesta");
 
         //recogiendo datos de cronometro2
         Bundle datos2 = this.getIntent().getExtras();
-        int res2 = datos2.getInt("cronometro2");
+        res2 = datos2.getInt("cronometro2");
 
+
+        //cargarpreferencias();
 
         img_calif = (ImageView)findViewById(R.id.img_calificada);
         tv_califica = (TextView)findViewById(R.id.txt_respuesta);
+
         //TOMA EL TIEMPO TOTAL DEL JUEGO
         tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
+        tv_tiempo.setText(Integer.toString(res2)+" segundos");
 
         tv_califica.setText(array_respuesta_txt[res]);
-        tv_tiempo.setText(Integer.toString(res2));
+
         img_calif.setImageResource(respuestacalifica2[res]);
 
         img_calif.setOnClickListener(this);
+    }
 
+
+    /*public void cargarpreferencias(){
+        SharedPreferences preferences = getSharedPreferences("preferencias", Context.MODE_PRIVATE);
+        tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
+        (preferences.getString("tiempo"," "));
+
+        if(!preferences.getString("tiempo"," ").equals(Integer.toString(res2))){
+            guardarpreferencias();
+        }
 
     }
+    public void guardarpreferencias(){
+        SharedPreferences preferences = getSharedPreferences("preferencias", Context.MODE_PRIVATE);
+        // con este empezamos a editar nuestras preferencias
+        SharedPreferences.Editor editor = preferences.edit();
+        //colocamos la llave "tiempo" y el valor que queremos asinar
+        editor.putInt("tiempo",res2);
+        //con comit hacemos que los cambios sean guardados
+        editor.commit();
+        //tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
+        //tv_tiempo.setText(Integer.toString(res2));
+    }*/
 
     public void respuestaporpuntuacion(int i){
 
