@@ -30,19 +30,15 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     //PARA INSTANCIAR EL CRONOMETRO
     private Cronometro cronometro = null;
+    private Cronometro_2 cronometro_2= null;
 
     //BOTTON QUE MUESTRA LA PREGUNTA
     public Button btn_preguntado;
     //OPCION ALEATORIA PARA LA RPEGUNTA ECHO CON STRINGS
 
-
-
     //creando array para selecion de preguntas alaeatorias
     //String[] array_preguntas_cambiantes;
     String cambio;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,11 +202,18 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         * PUTEXTRA (EL QUE LA RECIBE COLOCA PUT GET Y OTRO METODO DONDE ALMACENA
         * TODO LO QUE SE LE ESTA ENVIANDO*/
 
+        //SE ASIGNA A UNA VARIABLE DE TIPO ENTERO EL VALOR OBTENIDO DE LO SEGUNDOS EN CRONOMETRO 2
+        int traedato  = cronometro_2.get_seconds();
+
+
         intent.putExtra("respuesta",i);
+        intent.putExtra("cronometro2",traedato);
 
         //SE PAUSA EL CRONOMETRO DEL NUEVO ILO CREADO
         cronometro.pause();
-
+        cronometro.reiniciar();
+        cronometro_2.pause();
+        cronometro_2.reiniciar();
         //SE INICA LA ACTIVIDAD
         startActivity(intent);
         /*SE FINALIZA ESTA ACTIVIDAD CON EL FIN DE QUE QUE NO SE VUELVA A MOSTRAR
@@ -224,6 +227,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         if(cronometro==null){
             cronometro = new Cronometro("cronometro",mi_crono);
             new Thread(cronometro).start();
+        }
+        if(cronometro_2==null){
+            cronometro_2 = new Cronometro_2("cronometro_2");
+            new Thread(cronometro_2).start();
         }
 
     }

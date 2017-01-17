@@ -245,12 +245,16 @@ Comunicacion_niveles{
 
         traedato  = cronometro_2.get_seconds();
 
+
         intent.putExtra("respuesta",i);
         intent.putExtra("cronometro2",traedato);
 
         cronometro.pause();
+        cronometro_2.pause();
 
         startActivity(intent);
+        cronometro_2.reiniciar();
+        cronometro.reiniciar();
         finish();
 
     }

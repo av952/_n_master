@@ -8,9 +8,19 @@
     <string name="casero">HOME</string>
 
 
+    <string name="creditos">
+        Developer: AVXC
+        Disigner: AVXC
+        Grafics:(fuit,vegetable,animals) Freepik  -http://www.freepik.com
+    </string>
+
 
     <string name="bien_echo">GOOD JOB</string>
     <string name="fallaste">YOU FAILED</string>
     <string name="perfecto">PERFECT</string>
+
+
+    <string name="mensaje_cantidad">you finished in:</string>
+
 
 </resources>

@@ -39,7 +39,7 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     };
 
-    private TextView tv_califica;
+    private TextView tv_califica,tv_tiempo;
 
     Tile tile;
 
@@ -61,12 +61,13 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         int res2 = datos2.getInt("cronometro2");
 
 
-
-
         img_calif = (ImageView)findViewById(R.id.img_calificada);
         tv_califica = (TextView)findViewById(R.id.txt_respuesta);
-        //tv_califica.setText(array_respuesta_txt[res]);
-        tv_califica.setText(Integer.toString(res2));
+        //TOMA EL TIEMPO TOTAL DEL JUEGO
+        tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
+
+        tv_califica.setText(array_respuesta_txt[res]);
+        tv_tiempo.setText(Integer.toString(res2));
         img_calif.setImageResource(respuestacalifica2[res]);
 
         img_calif.setOnClickListener(this);
