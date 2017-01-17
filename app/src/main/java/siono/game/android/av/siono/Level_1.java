@@ -5,6 +5,7 @@ import android.database.CrossProcessCursor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,7 +67,8 @@ Comunicacion_niveles{
 
     int traedato;
 
-
+    //interruptor para detener la cuenta atras
+    private boolean interruptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,10 @@ Comunicacion_niveles{
         //crear nuevo hilo
         tiempo();
 
+        //cuenta atras
+        cuentaatras();
+        interruptor=true;
+
 
         //instanciar
         calificacion = new Calificacion();
@@ -111,6 +117,9 @@ Comunicacion_niveles{
         no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
         flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+
+
     }
 
     @Override
@@ -118,7 +127,7 @@ Comunicacion_niveles{
 
         switch (v.getId()){
             case R.id.btnsi:
-                cronometro.reiniciar();
+                //cronometro.reiniciar();
                 op=1;
                 cantidad++;
                 evaluacion();
@@ -126,7 +135,7 @@ Comunicacion_niveles{
 
                 break;
             case R.id.btnno:
-                cronometro.reiniciar();
+                //cronometro.reiniciar();
                 op=2;
                 cantidad++;
                 evaluacion();
@@ -238,8 +247,8 @@ Comunicacion_niveles{
 
     @Override
     public void fin_juego_set(int i) {
-
-
+        finish();
+        interruptor=false;
         intcaptado = i;
         Intent intent = new Intent(this,Calificacion.class);
 
@@ -249,13 +258,9 @@ Comunicacion_niveles{
         intent.putExtra("respuesta",i);
         intent.putExtra("cronometro2",traedato);
 
-        cronometro.pause();
+        //cronometro.pause();
         cronometro_2.pause();
-
         startActivity(intent);
-        cronometro_2.reiniciar();
-        cronometro.reiniciar();
-        finish();
 
     }
 
@@ -274,13 +279,39 @@ Comunicacion_niveles{
 
     @Override
     public void tiempo() {// llama el hilo
-        if(cronometro==null){
+        /*if(cronometro==null){
             cronometro = new Cronometro("cronometro",mi_crono);
             new Thread(cronometro).start();
-        }
+        }*/
         if(cronometro_2==null){
             cronometro_2 = new Cronometro_2("cronometro_2");
             new Thread(cronometro_2).start();
         }
+    }
+
+    public void cuentaatras(){
+
+            new CountDownTimer(5000,1000){
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mi_crono.setText(" "+(millisUntilFinished/1000));
+                    no.play(flujoDeMusica,1,1,0,0,1);
+                }
+
+                @Override
+                public void onFinish() {
+                    mal++;
+                    evaluacion();
+                    azar();
+                    if(interruptor==true){
+                        cuentaatras();
+                    }
+
+
+
+
+                }
+            }.start();
     }
 }
