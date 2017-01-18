@@ -39,6 +39,8 @@ public class Frag_home extends Fragment implements View.OnClickListener {
     private View onview;
 
     //----------------------------------------------------------------------------------------------
+    private Level_1 level_1 = new Level_1();
+    private Level_2 level_2 = new Level_2();
 
 
     public Frag_home() {
@@ -114,6 +116,7 @@ public class Frag_home extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_home:
                 Intent i = new  Intent(getActivity(),Menu.class);// la forma correcta para llamar desde frag
+                getActivity().finish();
                 startActivity(i);
         }
     }

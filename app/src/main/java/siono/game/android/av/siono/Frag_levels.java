@@ -24,6 +24,8 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
 
     private ImageView btn_lvl;
     private View  onview;
+    private Level_1 level_1 = new Level_1();
+    private Level_2 level_2 = new Level_2();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -109,12 +111,11 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_levels:
                 Intent i = new Intent(getActivity(),Levels_all.class);
+                getActivity().finish();
                 startActivity(i);
 
                 break;
         }
-
-
     }
 
     /**

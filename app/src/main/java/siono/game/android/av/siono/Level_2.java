@@ -14,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
+//esto es para la publicidad
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles,View.OnClickListener,
 Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener{
@@ -96,6 +100,12 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         //boton de la pregunta
         btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
 
+        //se crea esto para la publicidad
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
     }
@@ -292,7 +302,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     @Override
     public void cuentaatras() {
-        countDownTimer= new CountDownTimer(5000,1000){
+        countDownTimer= new CountDownTimer(3000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {

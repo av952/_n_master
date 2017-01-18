@@ -14,7 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.Random;
+
+//esto es para la publicidad
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class Level_1 extends AppCompatActivity  implements View.OnClickListener,
         Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener,
@@ -127,6 +133,14 @@ Comunicacion_niveles{
         click_tiempo = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
         flujoDeMusica = click_tiempo.load(this,R.raw.sonido_tiempo,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+
+        //se crea esto para la publicidad
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
     }
@@ -287,7 +301,7 @@ Comunicacion_niveles{
 
     public void cuentaatras(){
 
-           countDownTimer= new CountDownTimer(5000,1000){
+           countDownTimer= new CountDownTimer(3000,1000){
 
                 @Override
                 public void onTick(long millisUntilFinished) {
