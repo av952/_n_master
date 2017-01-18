@@ -57,7 +57,7 @@ Comunicacion_niveles{
     Calificacion calificacion;
 
     //soundpoll
-    private SoundPool ok,no;
+    private SoundPool ok,no,click_tiempo;
     private int flujoDeMusica;
 
     //BUTON PARA PREGUNTA ALEATORIA
@@ -66,6 +66,11 @@ Comunicacion_niveles{
 
 
     int traedato;
+
+
+    //timer
+    CountDownTimer countDownTimer;
+
 
     //interruptor para detener la cuenta atras
     private boolean interruptor;
@@ -118,6 +123,10 @@ Comunicacion_niveles{
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
         flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
+        //SOUNDPOOL SONIDO TIEMPO
+        click_tiempo = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = click_tiempo.load(this,R.raw.sonido_tiempo,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
 
     }
@@ -127,7 +136,9 @@ Comunicacion_niveles{
 
         switch (v.getId()){
             case R.id.btnsi:
-                //cronometro.reiniciar();
+                //cronometro.reiniciar()
+                countDownTimer.cancel();
+                cuentaatras();
                 op=1;
                 cantidad++;
                 evaluacion();
@@ -135,6 +146,8 @@ Comunicacion_niveles{
 
                 break;
             case R.id.btnno:
+                countDownTimer.cancel();
+                cuentaatras();
                 //cronometro.reiniciar();
                 op=2;
                 cantidad++;
@@ -249,6 +262,7 @@ Comunicacion_niveles{
     public void fin_juego_set(int i) {
         finish();
         interruptor=false;
+        countDownTimer.cancel();
         intcaptado = i;
         Intent intent = new Intent(this,Calificacion.class);
 
@@ -291,27 +305,42 @@ Comunicacion_niveles{
 
     public void cuentaatras(){
 
-            new CountDownTimer(5000,1000){
+           countDownTimer= new CountDownTimer(5000,1000){
 
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    mi_crono.setText(" "+(millisUntilFinished/1000));
-                    no.play(flujoDeMusica,1,1,0,0,1);
+
+                        mi_crono.setText(" "+(millisUntilFinished/1000));
+                        click_tiempo.play(flujoDeMusica,1,1,0,0,1);
                 }
 
                 @Override
                 public void onFinish() {
                     mal++;
-                    evaluacion();
+                    quitavidas();
                     azar();
-                    if(interruptor==true){
+                    if (interruptor==true){
                         cuentaatras();
                     }
-
-
-
-
                 }
             }.start();
+    }
+
+    public void quitavidas(){
+        switch (mal){
+            case 0:
+                cuantasvidas=2;
+                break;
+            case 1:
+                cuantasvidas=1;
+                break;
+            case 2:
+                cuantasvidas=0;
+                break;
+        }
+        vida.setImageResource(arrayvidas[cuantasvidas]);
+        if(mal==3){
+            fin_juego_set(2);
+        }
     }
 }
