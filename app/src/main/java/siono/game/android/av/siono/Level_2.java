@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
@@ -25,7 +26,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     //llamando a calificacion
     Calificacion calificacion;
     //soundpoll
-    private SoundPool ok,no;
+    private SoundPool ok,no,click_tiempo;
     private int flujoDeMusica;
 
     //PARA INSTANCIAR EL CRONOMETRO
@@ -40,10 +41,19 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     //String[] array_preguntas_cambiantes;
     String cambio;
 
+    //timer
+    CountDownTimer countDownTimer;
+
+    private boolean interruptor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_2);
+
+
+        interruptor = true;
+        cuentaatras();
 
         btn_no =(ImageView)findViewById(R.id.btnno);
         btn_no.setOnClickListener(this);
@@ -76,6 +86,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
         flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+        //SOUNDPOOL SONIDO TIEMPO
+        click_tiempo = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
+        flujoDeMusica = click_tiempo.load(this,R.raw.sonido_tiempo,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
 
         //boton de la pregunta
@@ -131,23 +146,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }
 
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
-        if(mal==3){
-            fin_juego_set(2);
-        }
-
-
-        switch (mal){
-            case 0:
-                cuantasvidas=2;
-                break;
-            case 1:
-                cuantasvidas=1;
-                break;
-            case 2:
-                cuantasvidas=0;
-                break;
-        }
-        vida.setImageResource(arrayvidas[cuantasvidas]);
+        quitavidas();
     }
 
     @Override
@@ -197,6 +196,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     @Override
     public void fin_juego_set(int i) {
 
+        finish();
+        interruptor=false;
+        countDownTimer.cancel();
+
         Intent intent = new Intent(this,Calificacion.class);
         /*PARA PODER TRANSFERIR INFORMACIÓN DE UNA VARIABLE A OTRA ES IMPORTANTE COLOCAR
         * PUTEXTRA (EL QUE LA RECIBE COLOCA PUT GET Y OTRO METODO DONDE ALMACENA
@@ -210,36 +213,37 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         intent.putExtra("cronometro2",traedato);
 
         //SE PAUSA EL CRONOMETRO DEL NUEVO ILO CREADO
-        cronometro.pause();
-        cronometro.reiniciar();
+        //cronometro.pause();
+        //cronometro.reiniciar();
         cronometro_2.pause();
         cronometro_2.reiniciar();
         //SE INICA LA ACTIVIDAD
         startActivity(intent);
         /*SE FINALIZA ESTA ACTIVIDAD CON EL FIN DE QUE QUE NO SE VUELVA A MOSTRAR
         * AL PRECIONAR EL BOTON ATRAS*/
-        finish();
+
 
     }
 
     @Override
     public void tiempo() {
-        if(cronometro==null){
+       /* if(cronometro==null){
             cronometro = new Cronometro("cronometro",mi_crono);
             new Thread(cronometro).start();
-        }
+        }*/
         if(cronometro_2==null){
             cronometro_2 = new Cronometro_2("cronometro_2");
             new Thread(cronometro_2).start();
         }
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnsi:
-                cronometro.reiniciar();
+                countDownTimer.cancel();
+                cuentaatras();
+                //cronometro.reiniciar();
                 op=1;
                 cantidad++;
                 evaluacion();
@@ -247,7 +251,9 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
                 break;
             case R.id.btnno:
-                cronometro.reiniciar();
+                countDownTimer.cancel();
+                cuentaatras();
+                //cronometro.reiniciar();
                 op=2;
                 cantidad++;
                 evaluacion();
@@ -260,6 +266,51 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+    @Override
+    public void quitavidas() {
+                        /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
+        * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
+        switch (mal){
+            case 0:
+                cuantasvidas=2;
+                break;
+            case 1:
+                cuantasvidas=1;
+                break;
+            case 2:
+                cuantasvidas=0;
+                break;
+        }
+        vida.setImageResource(arrayvidas[cuantasvidas]);
+        if(mal==3){
+            fin_juego_set(2);
+        }
+
+    }
+
+    @Override
+    public void cuentaatras() {
+        countDownTimer= new CountDownTimer(5000,1000){
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                mi_crono.setText(" "+(millisUntilFinished/1000));
+                click_tiempo.play(flujoDeMusica,1,1,0,0,1);
+            }
+
+            @Override
+            public void onFinish() {
+                mal++;
+                quitavidas();
+                azar();
+                if (interruptor==true){
+                    cuentaatras();
+                }
+            }
+        }.start();
 
     }
 }

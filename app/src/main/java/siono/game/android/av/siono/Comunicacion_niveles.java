@@ -67,4 +67,8 @@ public interface Comunicacion_niveles {
     void fin_juego_set(int i);
     void onBackPressed();
     void tiempo();
+    void quitavidas();
+    void cuentaatras();
+
+
 }

@@ -203,26 +203,8 @@ Comunicacion_niveles{
             bien++;
         }
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
-        if(mal==3){
-            fin_juego_set(2);
-        }
 
-        /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
-        * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
-        switch (mal){
-            case 0:
-                cuantasvidas=2;
-                break;
-            case 1:
-                cuantasvidas=1;
-                break;
-            case 2:
-                cuantasvidas=0;
-                break;
-        }
-        vida.setImageResource(arrayvidas[cuantasvidas]);
-
-
+        quitavidas();
     }
 
     //como que este no sirbe para nada
@@ -327,6 +309,8 @@ Comunicacion_niveles{
     }
 
     public void quitavidas(){
+                /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
+        * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
         switch (mal){
             case 0:
                 cuantasvidas=2;
