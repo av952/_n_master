@@ -2,6 +2,8 @@ package siono.game.android.av.siono;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,6 +44,9 @@ public class Frag_home extends Fragment implements View.OnClickListener {
     private Level_1 level_1 = new Level_1();
     private Level_2 level_2 = new Level_2();
 
+    private SoundPool click;
+    private int flujoDeMusica;
+
 
     public Frag_home() {
         // Required empty public constructor
@@ -72,6 +77,11 @@ public class Frag_home extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //SOUNDPOOL SONIDO TIEMPO
+        click = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujoDeMusica = click.load(this.getActivity(),R.raw.click,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
     }
 
     @Override
@@ -115,6 +125,7 @@ public class Frag_home extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_home:
+                click.play(flujoDeMusica,1,1,0,0,1);
                 Intent i = new  Intent(getActivity(),Menu.class);// la forma correcta para llamar desde frag
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 getActivity().

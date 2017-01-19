@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     private ImageView btn_1,btn_2,btn_3;
     private final int intervalo =2000;
     private long tiempoprimerclick;
+    private SoundPool click;
+    private int flujoDeMusica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,9 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         btn_3.setOnClickListener(this);
 
 
+        click = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujoDeMusica = click.load(this,R.raw.click,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
     }
 
@@ -36,16 +43,19 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_level_1:
+                click.play(flujoDeMusica,1,1,0,0,1);
                 Intent i = new Intent(this,Level_1.class);
                 startActivity(i);
                 finish();
                 break;
             case R.id.btn_level_2:
+                click.play(flujoDeMusica,1,1,0,0,1);
                 Intent i2 = new Intent(this,Level_2.class);
                 startActivity(i2);
                 finish();
                 break;
             case R.id.btn_level_3:
+                click.play(flujoDeMusica,1,1,0,0,1);
                 Intent i3 = new Intent(this,Level_3.class);
                 startActivity(i3);
                 finish();

@@ -328,4 +328,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     public void silenciar(){
         countDownTimer.cancel();
     }
+
+    public void onStop(){
+
+        super.onStop();
+        countDownTimer.cancel();
+
+    }
 }

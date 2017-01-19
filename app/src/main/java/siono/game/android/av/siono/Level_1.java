@@ -345,4 +345,12 @@ Comunicacion_niveles{
     public void silenciar(){
         countDownTimer.cancel();
     }
+
+    public void onStop(){
+
+        super.onStop();
+        countDownTimer.cancel();
+
+    }
+
 }

@@ -318,4 +318,10 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
     public void onFragmentInteraction(Uri uri) {
 
     }
+    public void onStop(){
+
+        super.onStop();
+        countDownTimer.cancel();
+
+    }
 }

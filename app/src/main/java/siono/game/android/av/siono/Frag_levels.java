@@ -2,6 +2,8 @@ package siono.game.android.av.siono;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,8 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
     private View  onview;
     private Level_1 level_1 = new Level_1();
     private Level_2 level_2 = new Level_2();
+    private SoundPool click;
+    private int flujodemusica;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -68,6 +72,12 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //SOUNDPOOL SONIDO TIEMPO
+        click =  new SoundPool(0, AudioManager.STREAM_MUSIC,0);
+        this.getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujodemusica = click.load(this.getActivity(),R.raw.click,1);
+
     }
 
     @Override
@@ -110,6 +120,7 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.btn_levels:
+                click.play(flujodemusica,1,1,0,0,1);
                 Intent i = new Intent(getActivity(),Levels_all.class);
                 getActivity().finish();
                 startActivity(i);

@@ -37,9 +37,9 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
     private Level_1 level_1 = new Level_1();
 
     private int[] respuestacalifica2={
-            R.drawable.resp_pref_2_700x516,
-            R.drawable.resp_bien_2_700x516,
-            R.drawable.resp_fallo_2_700x516};
+            R.drawable.resp_pref_3_700x516,
+            R.drawable.resp_bien_3_700x516,
+            R.drawable.resp_fallo_3_700x516};
 
     private int[] array_respuesta_txt={
       R.string.perfecto,
