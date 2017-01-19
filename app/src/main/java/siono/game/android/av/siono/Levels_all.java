@@ -25,6 +25,8 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         btn_1.setOnClickListener(this);
         btn_2 = (ImageView)findViewById(R.id.btn_level_2);
         btn_2.setOnClickListener(this);
+        btn_3 = (ImageView)findViewById(R.id.btn_level_3);
+        btn_3.setOnClickListener(this);
 
 
 
@@ -43,6 +45,10 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 startActivity(i2);
                 finish();
                 break;
+            case R.id.btn_level_3:
+                Intent i3 = new Intent(this,Level_3.class);
+                startActivity(i3);
+                finish();
         }
 
     }

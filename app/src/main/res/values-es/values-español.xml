@@ -9,6 +9,13 @@
     <string name="verdura">VERDURA</string>
     <string name="casero">CASERO</string>
 
+    <string name="terrestre">TERRESTRE</string>
+    <string name="maritimo">MARITIMO</string>
+    <string name="aereo">AEREO</string>
+
+
+
+
 
     <string name="creditos">
         Desarrollador: AVXC

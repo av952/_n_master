@@ -301,7 +301,7 @@ Comunicacion_niveles{
 
     public void cuentaatras(){
 
-           countDownTimer= new CountDownTimer(3000,1000){
+           countDownTimer= new CountDownTimer(tiempototal,1000){
 
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -340,5 +340,9 @@ Comunicacion_niveles{
         if(mal==3){
             fin_juego_set(2);
         }
+    }
+
+    public void silenciar(){
+        countDownTimer.cancel();
     }
 }

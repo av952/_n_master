@@ -28,11 +28,13 @@
         <activity
             android:name=".Level_1"
             android:screenOrientation="portrait" />
-        <activity android:name=".Calificacion"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Level_2"
-            android:screenOrientation="portrait"
-            ></activity>
+        <activity
+            android:name=".Calificacion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Level_2"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Level_3"></activity>
     </application>
 
 </manifest>

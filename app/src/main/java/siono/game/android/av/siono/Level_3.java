@@ -7,20 +7,19 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Random;
-//esto es para la publicidad
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-public class Level_2 extends AppCompatActivity  implements Comunicacion_niveles,View.OnClickListener,
-Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener{
+import java.util.Random;
+
+public class Level_3 extends AppCompatActivity  implements Comunicacion_niveles, Frag_home.OnFragmentInteractionListener,
+Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     private int p,op,cantidad,ran,bien,mal,cuantasvidas,pre;
     private ImageView vida,btn_si,btn_no, img_level_2,img_preg;
@@ -50,10 +49,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     private boolean interruptor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_2);
+        setContentView(R.layout.activity_level_3);
 
 
         interruptor = true;
@@ -106,7 +106,32 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnsi:
+                countDownTimer.cancel();
+                cuentaatras();
+                //cronometro.reiniciar();
+                op=1;
+                cantidad++;
+                evaluacion();
+                azar();
+
+                break;
+            case R.id.btnno:
+                countDownTimer.cancel();
+                cuentaatras();
+                //cronometro.reiniciar();
+                op=2;
+                cantidad++;
+                evaluacion();
+                azar();
+
+                break;
+        }
 
     }
 
@@ -116,7 +141,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
         }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
-           no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
             no.play(flujoDeMusica,1,1,0,0,1);
@@ -144,11 +169,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }
         else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/no/salvaje = no
             no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
+            bien++;
         }
         else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/si/salvaje = no
             no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
+            bien++;
         }
         else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/no/salvaje = si
             ok.play(flujoDeMusica,1,1,0,0,1);
@@ -157,11 +182,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
         quitavidas();
+
     }
 
     @Override
-    /*ESTE METODO QUE ES LLAMADO DE LA INTERFAZ COMUNICACIÓN NIVELES
-    * ME ASIGNA UNA CALIFICACIÓN DEPENDIENDO EL NUMERO DE MALAS O BUENAS QUE TENGA*/
     public void respuestaFinal(int cantbuenas) {
         int calif=0;
 
@@ -178,25 +202,22 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     }
 
     @Override
-    /*ESTE METODO GENERAL UNA IMAGEN AL AZAR PARA SER MOSTRADA EN PANTALLA
-    * GENERA TANTO LA PREGUNTA COMO LA IMAGEN CENTRAL*/
     public void azar() {
-
         //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
-        pre= random.nextInt(probandoestootro.length);
+        pre= random.nextInt(preguntas_level_3.length);
 
-        p = random.nextInt(imagenes_animales.length);//da una imagen random
-        ran = random.nextInt(array_pregunta.length);//pregunta random
+        p = random.nextInt(imagenes_animales_level3.length);//da una imagen random
+        ran = random.nextInt(preguntas_level_3.length);//pregunta random
 
-        if(cantidad<= imagenes_animales.length-1){
+        if(cantidad<= imagenes_animales_level3.length-1){
             //btn_preguntado.setText(cambio);
             btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
-            btn_preguntado.setText(probandoestootro[pre]);
+            btn_preguntado.setText(preguntas_level_3[pre]);
 
 
             //img_preg.setImageResource(array_pregunta[pre]);//aleatorio para la pregunta
             //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
-            img_level_2.setImageResource(imagenes_animales[p]);//aleatorio para la imagen
+            img_level_2.setImageResource(imagenes_animales_level3[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);
         }
@@ -232,12 +253,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         /*SE FINALIZA ESTA ACTIVIDAD CON EL FIN DE QUE QUE NO SE VUELVA A MOSTRAR
         * AL PRECIONAR EL BOTON ATRAS*/
 
-
     }
 
     @Override
     public void tiempo() {
-       /* if(cronometro==null){
+               /* if(cronometro==null){
             cronometro = new Cronometro("cronometro",mi_crono);
             new Thread(cronometro).start();
         }*/
@@ -247,43 +267,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }
 
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnsi:
-                countDownTimer.cancel();
-                cuentaatras();
-                //cronometro.reiniciar();
-                op=1;
-                cantidad++;
-                evaluacion();
-                azar();
 
-                break;
-            case R.id.btnno:
-                countDownTimer.cancel();
-                cuentaatras();
-                //cronometro.reiniciar();
-                op=2;
-                cantidad++;
-                evaluacion();
-                azar();
-
-                break;
-        }
-
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
     @Override
     public void quitavidas() {
-        if(mal==3){
-            fin_juego_set(2);
-        }
-                        /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
+                                /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
         * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
         switch (mal){
             case 0:
@@ -297,19 +284,21 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
                 break;
         }
         vida.setImageResource(arrayvidas[cuantasvidas]);
-
+        if(mal==3){
+            fin_juego_set(2);
+        }
 
     }
 
     @Override
     public void cuentaatras() {
-        countDownTimer= new CountDownTimer(tiempototal,1000){
+        countDownTimer= new CountDownTimer(tiempototal,1000){ //tiempototal sale de comunicacion niveles
 
             @Override
             public void onTick(long millisUntilFinished) {
 
-                /*mi_crono.setText(" "+(millisUntilFinished/1000));
-                click_tiempo.play(flujoDeMusica,1,1,0,0,1);*/
+                mi_crono.setText(" "+(millisUntilFinished/1000));
+                click_tiempo.play(flujoDeMusica,1,1,0,0,1);
             }
 
             @Override
@@ -325,7 +314,8 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     }
 
-    public void silenciar(){
-        countDownTimer.cancel();
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

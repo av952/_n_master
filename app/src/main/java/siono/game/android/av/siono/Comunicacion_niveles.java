@@ -9,6 +9,8 @@ import android.text.GetChars;
 public interface Comunicacion_niveles {
 
     int intervalo =2000;//para el metodo onbackpresed
+    int tiempototal = 5000;
+
 
     //IMAGENES RANDOM-------------------------------------LEVEL_1-----------------------------------
      int[] imagenesfruver ={
@@ -38,12 +40,32 @@ public interface Comunicacion_niveles {
             R.drawable.jungle_web_8,R.drawable.jungle_web_9,R.drawable.jungle_web_10,R.drawable.jungle_web_11,
             R.drawable.jungle_web_12,R.drawable.jungle_web_13
     };
+    //IMAGENES RANDOM-------------------------------------LEVEL_23
+    int[]imagenes_animales_level3={
+            R.drawable.ocean_webp_1,R.drawable.ocean_webp_3,R.drawable.ocean_webp_4,
+            R.drawable.ocean_webp_5,R.drawable.ocean_webp_6,R.drawable.ocean_webp_7,R.drawable.ocean_webp_8,
+            R.drawable.ocean_webp_9,
+            R.drawable.home_webp_1,
+            R.drawable.home_webp_2,R.drawable.home_webp_3,R.drawable.home_webp_4,R.drawable.home_webp_5,
+            R.drawable.home_webp_6,R.drawable.home_webp_7,R.drawable.jungle_web_1,R.drawable.jungle_web_2,R.drawable.jungle_web_3,
+            R.drawable.jungle_web_4,R.drawable.jungle_web_5,R.drawable.jungle_web_6,R.drawable.jungle_web_7,
+
+            R.drawable.fly_1,R.drawable.fly_2,R.drawable.fly_3,R.drawable.fly_4,R.drawable.fly_5,
+            R.drawable.home_webp_8,R.drawable.home_webp_9, R.drawable.home_webp_10
+
+    };
 
     //preguntas
     int[]probandoestootro={
             R.string.casero,
             R.string.granja,
             R.string.salvaje,
+    };
+
+    int[]preguntas_level_3={
+            R.string.terrestre,
+            R.string.maritimo,
+            R.string.aereo,
     };
 
 

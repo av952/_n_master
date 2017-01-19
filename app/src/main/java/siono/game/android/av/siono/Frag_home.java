@@ -116,7 +116,8 @@ public class Frag_home extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_home:
                 Intent i = new  Intent(getActivity(),Menu.class);// la forma correcta para llamar desde frag
-                getActivity().finish();
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                getActivity().
                 startActivity(i);
         }
     }
