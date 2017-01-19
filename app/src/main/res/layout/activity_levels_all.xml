@@ -37,36 +37,36 @@
 
         <ImageView
             android:layout_height="wrap_content"
-            android:layout_width="200dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
             android:layout_gravity="center"
-            android:src="@drawable/btn_frutaverdura_colors"
+            android:src="@drawable/btn_level_1_wp"
             android:id="@+id/btn_level_1"
             android:adjustViewBounds="true"
-
+            android:layout_margin="10dp"
             />
 
         <ImageView
             android:layout_height="wrap_content"
-            android:layout_width="200dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
             android:layout_gravity="center"
-            android:src="@drawable/btn_frutaverdura_colors"
+            android:src="@drawable/btn_level_2_wp"
             android:id="@+id/btn_level_2"
             android:adjustViewBounds="true"
+            android:layout_margin="10dp"
 
             />
 
         <ImageView
             android:layout_height="wrap_content"
-            android:layout_width="200dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
             android:layout_gravity="center"
-            android:src="@drawable/btn_frutaverdura_colors"
+            android:src="@drawable/btn_level_3_wp"
             android:id="@+id/btn_level_3"
             android:adjustViewBounds="true"
-
-
+            android:layout_margin="10dp"
             />
 
 

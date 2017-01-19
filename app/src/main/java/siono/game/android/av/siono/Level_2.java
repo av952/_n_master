@@ -308,8 +308,8 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             @Override
             public void onTick(long millisUntilFinished) {
 
-                /*mi_crono.setText(" "+(millisUntilFinished/1000));
-                click_tiempo.play(flujoDeMusica,1,1,0,0,1);*/
+                mi_crono.setText(" "+(millisUntilFinished/1000));
+                click_tiempo.play(flujoDeMusica,1,1,0,0,1);
             }
 
             @Override

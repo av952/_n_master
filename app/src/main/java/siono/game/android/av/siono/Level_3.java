@@ -137,45 +137,45 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     @Override
     public void evaluacion() {
-        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/si/granja=si
+        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//maritimo/si/maritomo=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//maritimo/no/maritimo=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
+        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//maritimo/si/terrestre/aereo=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//granja/no/hogar/salvaje=si
+        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//maritimo/no/terrestre/aereo=si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
-        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/si/hogar=si
+        }else if(p>7 &&p<=22 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//terrestre/si/terrestre=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/no/hogar=no
+        }else if(p>7 &&p<=21 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//terrestre/no/terrestre=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/si/granja/salvaje=no
+        }else if(p>7 &&p<=21 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//terrestre/si/maritmo/aereo=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/no/no es hogar = si
+        }else if(p>7 &&p<=21 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//terrestre/no/maritimo/aereo = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
 
-        else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/si/salvaje = si
+        else if(p>=21 && op==1 && cantidad<=imagenesfruver.length-1&& pre==2){//aereo/si/aereo= si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
-        else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/no/salvaje = no
+        else if(p>=21 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//aereo/no/aereo = no
             no.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
+            mal++;
         }
-        else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/si/salvaje = no
+        else if(p>=21 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//aereo/si/terrestre/maritomo = no
             no.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
+            mal++;
         }
-        else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/no/salvaje = si
+        else if(p>=21 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//aereo/no/terrestre/maritimo = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }

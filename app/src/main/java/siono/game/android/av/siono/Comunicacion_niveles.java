@@ -42,7 +42,7 @@ public interface Comunicacion_niveles {
     };
     //IMAGENES RANDOM-------------------------------------LEVEL_23
     int[]imagenes_animales_level3={
-            R.drawable.ocean_webp_1,R.drawable.ocean_webp_3,R.drawable.ocean_webp_4,
+            R.drawable.ocean_webp_1,R.drawable.ocean_webp_2,R.drawable.ocean_webp_4,
             R.drawable.ocean_webp_5,R.drawable.ocean_webp_6,R.drawable.ocean_webp_7,R.drawable.ocean_webp_8,
             R.drawable.ocean_webp_9,
             R.drawable.home_webp_1,
