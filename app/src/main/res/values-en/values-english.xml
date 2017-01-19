@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="granja">FARM</string>
-    <string name="salvaje">WILD</string>
-    <string name="fruta">FRUIT</string>
-    <string name="verdura">VEGETABLE</string>
-    <string name="casero">HOME</string>
+    <string name="granja">FARM?</string>
+    <string name="salvaje">WILD?</string>
+    <string name="fruta">FRUIT?</string>
+    <string name="verdura">VEGETABLE?</string>
+    <string name="casero">HOME?</string>
+
+    <string name="terrestre">TERRESTRIAL?</string>
+    <string name="maritimo">AQUATIC?</string>
+    <string name="aereo">AERIAL?</string>
 
 
     <string name="creditos">

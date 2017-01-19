@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorLevels"
+    android:background="@drawable/fondo_sinmarca"
     android:weightSum="1"
     tools:context="siono.game.android.av.siono.Calificacion">
 
@@ -63,7 +63,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/resp_pref_2_700x516"
+            android:src="@drawable/resp_pref_3_700x516"
             android:id="@+id/img_calificada"
             android:layout_weight="1"
             android:adjustViewBounds="true"

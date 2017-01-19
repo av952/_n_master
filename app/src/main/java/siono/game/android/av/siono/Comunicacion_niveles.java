@@ -17,7 +17,7 @@ public interface Comunicacion_niveles {
             R.drawable.aasparagus256, R.drawable.aaubergine256,
             R.drawable.abeans256, R.drawable.abroccoli256,R.drawable.acabbage256,
             R.drawable.acarrot256,R.drawable.acauliflower256,
-            R.drawable.achives256, R.drawable.alettuce256,R.drawable.aonion256,R.drawable.apeas256,
+            R.drawable.achives256, R.drawable.aradish256,R.drawable.aonion256,R.drawable.apeas256,
             R.drawable.apumpkin256,R.drawable.asalad256,
             R.drawable.bapple256,R.drawable.bavocado256,R.drawable.bbanana256,
             R.drawable.bblueberries256, R.drawable.bcherries256,R.drawable.bcoconut256,
