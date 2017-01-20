@@ -83,13 +83,13 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         //SOUNDPOOL infantil ok
         ok = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
-        flujoDeMusica = ok.load(this,R.raw.oknino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+        flujoDeMusica = ok.load(this,R.raw.ok_nuevo,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
 
         //SOUNDPOOL infantil no
         no = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);//para poder usar los botones de audio fisicos
-        flujoDeMusica = no.load(this,R.raw.nonino,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+        flujoDeMusica = no.load(this,R.raw.no_nuevo,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
         //SOUNDPOOL SONIDO TIEMPO
         click_tiempo = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad

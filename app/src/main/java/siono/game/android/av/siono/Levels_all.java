@@ -37,6 +37,10 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels_all);
 
+        //activacion booleanos
+        key_level2=false;
+        key_level3=false;
+
 
         btn_1 =(ImageView)findViewById(R.id.btn_level_1);
         btn_1.setOnClickListener(this);
@@ -65,11 +69,6 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         nivel_superado = sharedPreferences.getInt("nivel",0);
 
         cambioopacidad(nivel_superado);
-
-        //activacion booleanos
-
-
-
     }
 
     @Override
@@ -83,20 +82,22 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.btn_level_2:
 
-                    click.play(flujoDeMusica,1,1,0,0,1);
-                    Intent i2 = new Intent(this,Level_2.class);
-                    startActivity(i2);
-                    finish();
-
-
+                    if(key_level2==true){
+                        click.play(flujoDeMusica,1,1,0,0,1);
+                        Intent i2 = new Intent(this,Level_2.class);
+                        startActivity(i2);
+                        finish();
+                    }
                 break;
             case R.id.btn_level_3:
+                    if(key_level3==true){
+                        click.play(flujoDeMusica,1,1,0,0,1);
+                        Intent i3 = new Intent(this,Level_3.class);
+                        startActivity(i3);
+                        finish();
+                    }
+                break;
 
-                    click.play(flujoDeMusica,1,1,0,0,1);
-                    Intent i3 = new Intent(this,Level_3.class);
-                    startActivity(i3);
-
-                finish();
         }
 
     }
@@ -122,19 +123,21 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
             case 0:
                 btn_2.setAlpha(0.5f);
                 btn_3.setAlpha(0.5f);
+                key_level2=false;
+                key_level3=false;
                 break;
             case 2:
                 btn_2.setAlpha(1f);
                 btn_3.setAlpha(0.5f);
+                key_level2=true;
                 break;
             case 3:
                 btn_3.setAlpha(1f);
                 btn_2.setAlpha(1f);
+                key_level2=true;
+                key_level3=true;
 
                 break;
-            default:
-                break;
-
         }
 
 

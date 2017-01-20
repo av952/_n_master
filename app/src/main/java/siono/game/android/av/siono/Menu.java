@@ -72,7 +72,6 @@ Frag_home.OnFragmentInteractionListener{
                /* Intent ir3 = new Intent(this,Frag_creditos.class);
                 startActivity(ir3);*/
                 fragTran_Creditos.commit();
-                finish();
                 break;
 
         }
