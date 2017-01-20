@@ -21,10 +21,16 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     private SoundPool click;
     private int flujoDeMusica;
 
+    //boleanos paraa activacion de niveles
+    boolean key_level2;
+    boolean key_level3;
+    //-------------------------------
+
     private Clase_comunicadora clase_comunicadora = new Clase_comunicadora();
 
     //en esta variable guar que niveles se han desbloqueado
-    private int nivel_superado;
+    private int nivel_superado =0;
+    public SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +60,14 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
             cambioopacidad(res);
         }*/
 
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+
+        sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
         nivel_superado = sharedPreferences.getInt("nivel",0);
 
-        if(nivel_superado == 2){
-            cambioopacidad(2);
-        }else if(nivel_superado==0){
-            cambioopacidad(0);
-        }
+        cambioopacidad(nivel_superado);
 
-        //255 es el valor mas alto en alfa
+        //activacion booleanos
+
 
 
     }
@@ -78,15 +82,20 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.btn_level_2:
-                click.play(flujoDeMusica,1,1,0,0,1);
-                Intent i2 = new Intent(this,Level_2.class);
-                startActivity(i2);
-                finish();
+
+                    click.play(flujoDeMusica,1,1,0,0,1);
+                    Intent i2 = new Intent(this,Level_2.class);
+                    startActivity(i2);
+                    finish();
+
+
                 break;
             case R.id.btn_level_3:
-                click.play(flujoDeMusica,1,1,0,0,1);
-                Intent i3 = new Intent(this,Level_3.class);
-                startActivity(i3);
+
+                    click.play(flujoDeMusica,1,1,0,0,1);
+                    Intent i3 = new Intent(this,Level_3.class);
+                    startActivity(i3);
+
                 finish();
         }
 
@@ -107,15 +116,25 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     public void onFragmentInteraction(Uri uri) {
 
     }
-
-
     public void cambioopacidad(int i){
 
-        if(i==2){
-            btn_2.setImageAlpha(1);
-        }else if(i==0){
-            btn_2.setAlpha(0.5f);
-            btn_3.setAlpha(0.5f);
+        switch (i){
+            case 0:
+                btn_2.setAlpha(0.5f);
+                btn_3.setAlpha(0.5f);
+                break;
+            case 2:
+                btn_2.setAlpha(1f);
+                btn_3.setAlpha(0.5f);
+                break;
+            case 3:
+                btn_3.setAlpha(1f);
+                btn_2.setAlpha(1f);
+
+                break;
+            default:
+                break;
+
         }
 
     }

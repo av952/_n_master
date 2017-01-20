@@ -57,6 +57,9 @@ Comunicacion_niveles{
 
 
 
+
+
+
 //comuicacion niveles
     Levels_all levels_all = new Levels_all();
 
@@ -74,6 +77,10 @@ Comunicacion_niveles{
 
     //BUTON PARA PREGUNTA ALEATORIA
     private Button btn_preguntas;
+
+
+    //charepreference
+    SharedPreferences sharedPreferences;
 
 
 
@@ -150,7 +157,8 @@ Comunicacion_niveles{
 
 
         //CON ESTO PUEDO ALAMACENAR INFORMACION
-        SharedPreferences sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
+
 
     }
 
@@ -276,7 +284,6 @@ Comunicacion_niveles{
             Intent intentlevels =  new Intent(this,Levels_all.class);
             intentlevels.putExtra("nivel_2_desbloqueado",2);*/
 
-            SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor  = sharedPreferences.edit();
             editor.putInt("nivel",2);
             editor.commit();
