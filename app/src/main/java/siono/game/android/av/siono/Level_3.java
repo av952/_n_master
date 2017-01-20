@@ -66,7 +66,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         //VIDA
         vida = (ImageView)findViewById(R.id.vidas);
         //IMAGENES DEL CENTRO
-        img_level_2 = (ImageView)findViewById(R.id.imagenes_level_2);
+        img_level_2 = (ImageView)findViewById(R.id.imagenes_level_1);
         //IMG PREGUNTA
         //img_preg = (ImageView)findViewById(R.id.preg_animal);
         //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO

@@ -83,6 +83,10 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         img_calif.setImageResource(respuestacalifica2[res]);
 
         img_calif.setOnClickListener(this);
+
+
+
+
     }
 
 

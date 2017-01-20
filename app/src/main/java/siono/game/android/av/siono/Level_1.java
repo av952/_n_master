@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.CrossProcessCursor;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -53,6 +55,10 @@ Comunicacion_niveles{
     private Cronometro cronometro = null;
     private Cronometro_2 cronometro_2= null;
 
+
+
+//comuicacion niveles
+    Levels_all levels_all = new Levels_all();
 
 
     //instanciar
@@ -142,6 +148,9 @@ Comunicacion_niveles{
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+
+        //CON ESTO PUEDO ALAMACENAR INFORMACION
+        SharedPreferences sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
 
     }
 
@@ -260,6 +269,18 @@ Comunicacion_niveles{
         interruptor=false;
         countDownTimer.cancel();
         intcaptado = i;
+
+
+            /*Clase_comunicadora clase_comunicadora = new Clase_comunicadora();
+            clase_comunicadora.set_recibe(2);
+            Intent intentlevels =  new Intent(this,Levels_all.class);
+            intentlevels.putExtra("nivel_2_desbloqueado",2);*/
+
+            SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor  = sharedPreferences.edit();
+            editor.putInt("nivel",2);
+            editor.commit();
+
         Intent intent = new Intent(this,Calificacion.class);
 
         traedato  = cronometro_2.get_seconds();

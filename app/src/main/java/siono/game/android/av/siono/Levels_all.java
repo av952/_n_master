@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -19,6 +21,11 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     private SoundPool click;
     private int flujoDeMusica;
 
+    private Clase_comunicadora clase_comunicadora = new Clase_comunicadora();
+
+    //en esta variable guar que niveles se han desbloqueado
+    private int nivel_superado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,28 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         click = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoDeMusica = click.load(this,R.raw.click,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
+
+
+        //recibiendo datos de level 1
+        /*int tomarecibido = clase_comunicadora.get_recibe();
+        if(tomarecibido==2){
+            Intent intent = new Intent(this,Level_1.class);
+            Bundle bundle = this.getIntent().getExtras();
+            int res  = bundle.getInt("nivel_2_desbloqueado");
+            cambioopacidad(res);
+        }*/
+
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        nivel_superado = sharedPreferences.getInt("nivel",0);
+
+        if(nivel_superado == 2){
+            cambioopacidad(2);
+        }else if(nivel_superado==0){
+            cambioopacidad(0);
+        }
+
+        //255 es el valor mas alto en alfa
+
 
     }
 
@@ -76,6 +105,18 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+
+    public void cambioopacidad(int i){
+
+        if(i==2){
+            btn_2.setImageAlpha(1);
+        }else if(i==0){
+            btn_2.setAlpha(0.5f);
+            btn_3.setAlpha(0.5f);
+        }
 
     }
 }

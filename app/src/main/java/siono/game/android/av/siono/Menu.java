@@ -71,8 +71,8 @@ Frag_home.OnFragmentInteractionListener{
                 sp.play(flujoDeMusica,1,1,0,0,1);
                /* Intent ir3 = new Intent(this,Frag_creditos.class);
                 startActivity(ir3);*/
-
                 fragTran_Creditos.commit();
+                finish();
                 break;
 
         }
