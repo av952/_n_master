@@ -123,16 +123,16 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
     @Override
     public void evaluacion() {
-        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/si/granja=si
+        if(p<=6 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/si/granja=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
+        }else if(p<=6 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
-        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
+        }else if(p<=6 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
             no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//granja/no/hogar/salvaje=si
+        }else if(p<=6 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//granja/no/hogar/salvaje=si
             ok.play(flujoDeMusica,2,2,0,0,1);
             bien++;
         }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/si/hogar=si

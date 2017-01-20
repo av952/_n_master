@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Levels_all extends AppCompatActivity implements View.OnClickListener,Frag_home.OnFragmentInteractionListener{
@@ -20,6 +21,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     private long tiempoprimerclick;
     private SoundPool click;
     private int flujoDeMusica;
+    private TextView tv_estrella;
 
     //boleanos paraa activacion de niveles
     boolean key_level2;
@@ -30,7 +32,11 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
     //en esta variable guar que niveles se han desbloqueado
     private int nivel_superado =0;
+    private  int estrellas;
     public SharedPreferences sharedPreferences;
+
+    //opcines de nivel
+    private int op;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,8 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         btn_3 = (ImageView)findViewById(R.id.btn_level_3);
         btn_3.setOnClickListener(this);
 
+        tv_estrella = (TextView)findViewById(R.id.tv_estrellas);
+
 
         click = new SoundPool(0, AudioManager.STREAM_MUSIC,0);//numero de veces,el flujo del sonido,calidad
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -66,9 +74,20 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
 
         sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
-        nivel_superado = sharedPreferences.getInt("nivel",0);
+        //nivel_superado = sharedPreferences.getInt("nivel",0);
+        estrellas = sharedPreferences.getInt("cuanta_estrella",0);
 
-        cambioopacidad(nivel_superado);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("cuanta_estrella",100);
+        editor.commit();
+
+
+        key_level2 = sharedPreferences.getBoolean("activacion_level2",false);
+        key_level3 = sharedPreferences.getBoolean("activacion_level3",false);
+
+        cantidadestrellas(estrellas);
+
+        cambioopacidad();
     }
 
     @Override
@@ -82,12 +101,15 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.btn_level_2:
 
-                    if(key_level2==true){
-                        click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
-                        Intent i2 = new Intent(this,Level_2.class);
-                        startActivity(i2);
-                        finish();
-                    }
+                if(key_level2==true){
+                    click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
+                    Intent i2 = new Intent(this,Level_2.class);
+                    startActivity(i2);
+                    finish();
+                }else {
+                    op=2;
+                    entrada_nivel();
+                }
                 break;
             case R.id.btn_level_3:
                     if(key_level3==true){
@@ -95,12 +117,47 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                         Intent i3 = new Intent(this,Level_3.class);
                         startActivity(i3);
                         finish();
+                    }else {
+                        op=3;
+                        entrada_nivel();
                     }
                 break;
 
         }
 
     }
+
+    private void entrada_nivel() {
+
+        //evaluo si tiene 3 o mas estrelas y si la llamada l hizo en boton level2
+        if(estrellas>=3 && op==2){
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("cuanta_estrella",estrellas-3);
+            editor.putBoolean("activacion_level2",true);
+            editor.putFloat("opacidad2",1f);
+            editor.commit();
+
+            //lo leo para poder identificar que ahora es true y poder entrar al nivel
+            key_level2 = sharedPreferences.getBoolean("activacion_level2",false);
+
+            cambioopacidad();
+
+        }else if (estrellas>=6&&op==3){
+
+            SharedPreferences.Editor editor =sharedPreferences.edit();
+            editor.putInt("cuanta_estrella",estrellas-6);
+            editor.putBoolean("activacion_level3",true);
+            editor.putFloat("opacidad3",1f);
+            editor.commit();
+
+            key_level3 = sharedPreferences.getBoolean("activacion_level3",false);
+
+            cambioopacidad();
+        }
+
+    }
+
     //ACCION REALIZADA CUANDO SE PRECIONA EL BOTON DE REGRESAR
     public void onBackPressed(){
         if(tiempoprimerclick+intervalo>System.currentTimeMillis()){
@@ -117,34 +174,31 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     public void onFragmentInteraction(Uri uri) {
 
     }
-    public void cambioopacidad(int i){
+    public void cambioopacidad(){
 
-        switch (i){
-            case 0:
-                btn_2.setAlpha(0.5f);
-                btn_3.setAlpha(0.5f);
-                key_level2=false;
-                key_level3=false;
-                break;
-            case 2:
-                btn_2.setAlpha(1f);
-                btn_3.setAlpha(0.5f);
-                key_level2=true;
-                break;
-            case 3:
-                btn_3.setAlpha(1f);
-                btn_2.setAlpha(1f);
-                key_level2=true;
-                key_level3=true;
+        estrellas = sharedPreferences.getInt("cuanta_estrella",0);
+        cantidadestrellas(estrellas);
 
-                break;
-        }
 
+        float opaco = sharedPreferences.getFloat("opacidad2",0.5f);
+        float opaco2 = sharedPreferences.getFloat("opacidad3",0.5f);
+
+
+        btn_2.setAlpha(opaco);
+        btn_3.setAlpha(opaco2);
 
     }
 
     public void onStop(){
         super.onStop();
         finish();
+    }
+
+    private void cantidadestrellas(int e) {
+
+        tv_estrella.setText(Integer.toString(e));
+
+
+
     }
 }

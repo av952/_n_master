@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -16,7 +18,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,Leve
 Frag_creditos.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListener,
 Frag_home.OnFragmentInteractionListener{
 
-    ImageView btnbegin,btnhtp,btnlevels;
+    ImageView btnbegin,resetear,btnlevels;
     public SoundPool sp;
     public int flujoDeMusica;
     private final int intervalo =2000;
@@ -27,6 +29,10 @@ Frag_home.OnFragmentInteractionListener{
     //Frac_htp frac1;
     Levels levels;
     Frag_creditos frag_creditos;
+
+
+    //para resetear
+      SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +58,33 @@ Frag_home.OnFragmentInteractionListener{
         fragTran_Creditos = fragmentManager.beginTransaction();
         frag_creditos = new Frag_creditos();//relaiona el fragmento
         fragTran_Creditos.replace(R.id.contenedorenmain,frag_creditos);
+
+
+
+        //para resetear valores guardados
+
+        resetear = (ImageView)findViewById(R.id.creditos);
+        resetear.setOnClickListener(this);
+
+        sharedPreferences = getSharedPreferences("guardadodeniveles", Context.MODE_PRIVATE);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            /*case R.id.btnHtp:
+            case R.id.creditos:
                 sp.play(flujoDeMusica,1,1,0,0,1);
+                //para resetiar
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("activacion_level2",false);
+                editor.putBoolean("activacion_level3",false);
+                editor.putInt("cuanta_estrella",0);
+                editor.putFloat("opacidad2",0.5f);
+                editor.putFloat("opacidad3",0.5f);
+
+                editor.commit();
                 //fragmentTransaction.commit();
-                break;*/
+                break;
             case R.id.btnBegin:
                 sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                 Intent i = new Intent(this,Levels_all.class);

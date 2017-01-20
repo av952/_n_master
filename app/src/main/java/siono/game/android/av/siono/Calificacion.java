@@ -27,6 +27,8 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
     private final int intervalo =2000;
     private long tiempoprimerclick;
 
+    private int estrellas;
+
 
     //VARIABLES PARA GURDAR PUNTUACION
     private int  max =0;
@@ -49,6 +51,8 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
     };
 
     private TextView tv_califica,tv_tiempo;
+
+    SharedPreferences share;
 
     Tile tile;
 
@@ -85,7 +89,31 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         img_calif.setOnClickListener(this);
 
 
+        share = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
+        colocandoestrellas();
 
+
+    }
+
+    private void colocandoestrellas() {
+
+        estrellas = share.getInt("cuanta_estrella",0);
+
+        switch (res){
+            case 0:
+                estrellas=estrellas+3;
+                break;
+            case 1:
+                estrellas=estrellas+1;
+                break;
+            case 2:
+                estrellas=estrellas+0;
+
+        }
+
+        SharedPreferences.Editor editor = share.edit();
+        editor.putInt("cuanta_estrella",estrellas);
+        editor.commit();
 
     }
 
