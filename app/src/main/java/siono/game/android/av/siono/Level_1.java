@@ -339,7 +339,7 @@ Comunicacion_niveles{
                 public void onTick(long millisUntilFinished) {
 
                         mi_crono.setText(" "+(millisUntilFinished/1000));
-                        click_tiempo.play(flujoDeMusica,1,1,0,0,1);
+                        click_tiempo.play(flujoDeMusica,0.2f,0.2f,0,0,1);
                 }
 
                 @Override
@@ -382,6 +382,7 @@ Comunicacion_niveles{
 
         super.onStop();
         countDownTimer.cancel();
+        finish();
 
     }
 

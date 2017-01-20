@@ -9,7 +9,7 @@ import android.text.GetChars;
 public interface Comunicacion_niveles {
 
     int intervalo =2000;//para el metodo onbackpresed
-    int tiempototal = 5000;
+    int tiempototal = 10000;
 
 
     //IMAGENES RANDOM-------------------------------------LEVEL_1-----------------------------------

@@ -62,13 +62,13 @@ Frag_home.OnFragmentInteractionListener{
                 //fragmentTransaction.commit();
                 break;*/
             case R.id.btnBegin:
-                sp.play(flujoDeMusica,1,1,0,0,1);
+                sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                 Intent i = new Intent(this,Levels_all.class);
                 startActivity(i);
                 finish();
                 break;
             case R.id.btncreditos:
-                sp.play(flujoDeMusica,1,1,0,0,1);
+                sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                /* Intent ir3 = new Intent(this,Frag_creditos.class);
                 startActivity(ir3);*/
                 fragTran_Creditos.commit();

@@ -1,6 +1,8 @@
 package siono.game.android.av.siono;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 //esto es para la publicidad
@@ -49,6 +52,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     CountDownTimer countDownTimer;
 
     private boolean interruptor;
+
+
+    //sharepreference
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +115,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         mAdView.loadAd(adRequest);
 
 
+        //sharepreferences
+        sharedPreferences = getSharedPreferences("guardadodeniveles", Context.MODE_PRIVATE);
+
+
     }
 
     @Override
@@ -116,22 +127,22 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
         }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//granja/no/granja=no
-           no.play(flujoDeMusica,1,1,0,0,1);
+           no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//granja/si/hogar/salvaje=no
-            no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//granja/no/hogar/salvaje=si
-            ok.play(flujoDeMusica,1,1,0,0,1);
+            ok.play(flujoDeMusica,2,2,0,0,1);
             bien++;
         }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/si/hogar=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
         }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//hogar/no/hogar=no
-            no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }else if(p>6 &&p<=16 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/si/granja/salvaje=no
-            no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }else if(p>6 &&p<=16 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//hogar/no/no es hogar = si
             ok.play(flujoDeMusica,1,1,0,0,1);
@@ -143,11 +154,11 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             bien++;
         }
         else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//salvaje/no/salvaje = no
-            no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }
         else if(p>=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/si/salvaje = no
-            no.play(flujoDeMusica,1,1,0,0,1);
+            no.play(flujoDeMusica,2,2,0,0,1);
             mal++;
         }
         else if(p>=17 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//salvaje/no/salvaje = si
@@ -217,6 +228,13 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         //SE ASIGNA A UNA VARIABLE DE TIPO ENTERO EL VALOR OBTENIDO DE LO SEGUNDOS EN CRONOMETRO 2
         int traedato  = cronometro_2.get_seconds();
+
+
+        if(i==0){
+            SharedPreferences.Editor editor  = sharedPreferences.edit();
+            editor.putInt("nivel",3);
+            editor.commit();
+        }
 
 
         intent.putExtra("respuesta",i);
@@ -309,7 +327,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             public void onTick(long millisUntilFinished) {
 
                 mi_crono.setText(" "+(millisUntilFinished/1000));
-                click_tiempo.play(flujoDeMusica,1,1,0,0,1);
+                click_tiempo.play(flujoDeMusica,0.2f,0.2f,0,0,1);
             }
 
             @Override
@@ -324,15 +342,22 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         }.start();
 
     }
-
-    public void silenciar(){
-        countDownTimer.cancel();
-    }
-
     public void onStop(){
 
         super.onStop();
         countDownTimer.cancel();
+        finish();
+
+    }
+    @Override
+    public void onBackPressed(){
+        if(tiempoprimerclick+intervalo>System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this,"vuelve a aprecionar para salir",Toast.LENGTH_SHORT).show();
+        }
+        tiempoprimerclick = System.currentTimeMillis();
 
     }
 }

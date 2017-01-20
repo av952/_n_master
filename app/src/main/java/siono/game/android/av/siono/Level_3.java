@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -298,7 +299,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
             public void onTick(long millisUntilFinished) {
 
                 mi_crono.setText(" "+(millisUntilFinished/1000));
-                click_tiempo.play(flujoDeMusica,1,1,0,0,1);
+                click_tiempo.play(flujoDeMusica,0.2f,0.2f,0,0,1);
             }
 
             @Override
@@ -322,6 +323,18 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
         super.onStop();
         countDownTimer.cancel();
+        finish();
+
+    }
+    @Override
+    public void onBackPressed(){
+        if(tiempoprimerclick+intervalo>System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this,"vuelve a aprecionar para salir",Toast.LENGTH_SHORT).show();
+        }
+        tiempoprimerclick = System.currentTimeMillis();
 
     }
 }

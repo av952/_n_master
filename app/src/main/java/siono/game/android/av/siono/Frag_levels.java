@@ -120,7 +120,7 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.btn_levels:
-                click.play(flujodemusica,1,1,0,0,1);
+                click.play(flujodemusica,0.5f,0.5f,0,0,1);
                 Intent i = new Intent(getActivity(),Levels_all.class);
                 getActivity().finish();
                 startActivity(i);

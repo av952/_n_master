@@ -75,7 +75,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_level_1:
-                click.play(flujoDeMusica,1,1,0,0,1);
+                click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                 Intent i = new Intent(this,Level_1.class);
                 startActivity(i);
                 finish();
@@ -83,7 +83,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
             case R.id.btn_level_2:
 
                     if(key_level2==true){
-                        click.play(flujoDeMusica,1,1,0,0,1);
+                        click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                         Intent i2 = new Intent(this,Level_2.class);
                         startActivity(i2);
                         finish();
@@ -91,7 +91,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.btn_level_3:
                     if(key_level3==true){
-                        click.play(flujoDeMusica,1,1,0,0,1);
+                        click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                         Intent i3 = new Intent(this,Level_3.class);
                         startActivity(i3);
                         finish();
@@ -141,5 +141,10 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         }
 
 
+    }
+
+    public void onStop(){
+        super.onStop();
+        finish();
     }
 }
