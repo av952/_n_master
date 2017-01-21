@@ -78,7 +78,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         estrellas = sharedPreferences.getInt("cuanta_estrella",0);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("cuanta_estrella",100);
+        //editor.putInt("cuanta_estrella",100);
         editor.commit();
 
 
@@ -154,6 +154,8 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
             key_level3 = sharedPreferences.getBoolean("activacion_level3",false);
 
             cambioopacidad();
+        }else {
+            Toast.makeText(this,R.string.advertencia_nivel,Toast.LENGTH_SHORT).show();
         }
 
     }

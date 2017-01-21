@@ -11,6 +11,8 @@
     <string name="maritimo">AQUATIC?</string>
     <string name="aereo">AERIAL?</string>
 
+    <string name="advertencia_nivel">Do not have enough stars for this level</string>
+
 
     <string name="creditos">
         Developer: AVXC
