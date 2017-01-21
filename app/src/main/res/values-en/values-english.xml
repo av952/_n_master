@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">SioNo</string>
+
     <string name="granja">FARM?</string>
     <string name="salvaje">WILD?</string>
     <string name="fruta">FRUIT?</string>
@@ -27,6 +29,8 @@
 
 
     <string name="mensaje_cantidad">you finished in:</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-7600541404292053/9173408522</string>
 
 
 </resources>
