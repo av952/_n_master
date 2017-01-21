@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="imagen_central">220dp</dimen>
+    <dimen name="botones_niveles">110dp</dimen>
+    <dimen name="botone_pregunta_ancho">230dp</dimen>
+    <dimen name="botone_pregunta_alto">72dp</dimen>
+    <dimen name="letra_pregunta">30sp</dimen>
+</resources>

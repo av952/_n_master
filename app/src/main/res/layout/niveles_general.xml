@@ -60,33 +60,36 @@
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/space"
-        android:layout_weight="1"
+        android:id="@+id/space1"
+        android:layout_weight="2"
         />
 
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/botone_pregunta_ancho"
+        android:layout_height="@dimen/botone_pregunta_alto"
         android:id="@+id/elbotonquepregunta"
         android:layout_gravity="center"
         android:background="@drawable/basebotones_2"
-        android:text="@string/fruta"
-        android:textSize="50sp"
+        android:text="@string/verdura"
+        android:textSize="@dimen/letra_pregunta"
         android:textColor="@color/blanco"
         android:layout_marginBottom="10dp"
         />
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
+        android:layout_weight="3.5"
         android:background="@color/blanco"
         android:layout_gravity="center">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/imagen_central"
+            android:layout_height="@dimen/imagen_central"
             android:id="@+id/imagenes_level_1"
             android:layout_weight="1"
             android:src="@drawable/aasparagus256"
@@ -100,14 +103,14 @@
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/space2"
-        android:layout_weight="1"
+        android:id="@+id/space5"
+        android:layout_weight="0.5"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="6"
+        android:weightSum="4"
         android:orientation="horizontal"
         android:gravity="center"
 
@@ -115,7 +118,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/botones_niveles"
             android:id="@+id/btnsi"
             android:layout_weight="1"
             android:src="@drawable/btn_si"
@@ -130,7 +133,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/botones_niveles"
             android:id="@+id/btnno"
             android:layout_weight="1"
             android:src="@drawable/btn_no"
