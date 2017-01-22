@@ -7,7 +7,7 @@
     android:background="@color/niveles"
     android:orientation="vertical"
     android:weightSum="6"
-    tools:context="siono.game.android.av.siono.Level_1"
+    tools:context="siono.game.android.av.siono.gratis.Level_1"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     >
 
@@ -25,7 +25,7 @@
         <fragment
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:name="siono.game.android.av.siono.Frag_home"
+            android:name="siono.game.android.av.siono.gratis.Frag_home"
             android:id="@+id/fragment"
             android:layout_weight="1"
             tools:layout="@layout/fragment_frag_home"
@@ -51,7 +51,7 @@
         <fragment
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:name="siono.game.android.av.siono.Frag_levels"
+            android:name="siono.game.android.av.siono.gratis.Frag_levels"
             android:id="@+id/fragment2"
             android:layout_weight="1"
             tools:layout="@layout/fragment_frag_levels" />

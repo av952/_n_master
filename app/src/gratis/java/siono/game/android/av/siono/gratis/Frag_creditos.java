@@ -1,38 +1,25 @@
 package siono.game.android.av.siono.gratis;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import siono.game.android.av.siono.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Frag_levels.OnFragmentInteractionListener} interface
+ * {@link Frag_creditos.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Frag_levels#newInstance} factory method to
+ * Use the {@link Frag_creditos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Frag_levels extends Fragment implements View.OnClickListener {
-
-
-    private ImageView btn_lvl;
-    private View  onview;
-    //private Level_1 level_1 = new Level_1();
-    //private Level_2 level_2 = new Level_2();
-    private SoundPool click;
-    private int flujodemusica;
-
-
+public class Frag_creditos extends Fragment implements Frag_levels.OnFragmentInteractionListener,Frag_home.OnFragmentInteractionListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,7 +31,7 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    public Frag_levels() {
+    public Frag_creditos() {
         // Required empty public constructor
     }
 
@@ -54,11 +41,11 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Frag_levels.
+     * @return A new instance of fragment Frag_creditos.
      */
     // TODO: Rename and change types and number of parameters
-    public static Frag_levels newInstance(String param1, String param2) {
-        Frag_levels fragment = new Frag_levels();
+    public static Frag_creditos newInstance(String param1, String param2) {
+        Frag_creditos fragment = new Frag_creditos();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,23 +60,13 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        //SOUNDPOOL SONIDO TIEMPO
-        click =  new SoundPool(0, AudioManager.STREAM_MUSIC,0);
-        this.getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        flujodemusica = click.load(this.getActivity(),R.raw.click,1);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        onview= inflater.inflate(R.layout.fragment_frag_levels, container, false);
-
-        btn_lvl = (ImageView)onview.findViewById(R.id.btn_levels);
-        btn_lvl.setOnClickListener(this);
-        return onview;
+        return inflater.inflate(R.layout.fragment_frag_creditos, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -117,17 +94,8 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onFragmentInteraction(Uri uri) {
 
-        switch (v.getId()){
-            case R.id.btn_levels:
-                click.play(flujodemusica,0.5f,0.5f,0,0,1);
-                Intent i = new Intent(getActivity(),Levels_all.class);
-                getActivity().finish();
-                startActivity(i);
-
-                break;
-        }
     }
 
     /**
@@ -144,4 +112,5 @@ public class Frag_levels extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

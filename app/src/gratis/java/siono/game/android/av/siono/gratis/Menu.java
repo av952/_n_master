@@ -1,4 +1,4 @@
-package siono.game.android.av.siono;
+package siono.game.android.av.siono.gratis;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import siono.game.android.av.siono.depago.Levels_all;
+import siono.game.android.av.siono.R;
 
 
 
