@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_calificacion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_sinmarca"
+    android:weightSum="1"
+    tools:context="siono.game.android.av.siono.depago.Calificacion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gris"
+        android:paddingBottom="10dp"
+        android:weightSum="2"
+        android:layout_gravity="center"
+        >
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="siono.game.android.av.siono.depago.Frag_home"
+            android:id="@+id/fragment4"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_frag_home" />
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="siono.game.android.av.siono.depago.Frag_levels"
+            android:id="@+id/fragment3"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_frag_levels" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:text="@string/bien_echo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_respuesta"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/resp_pref_3_700x516"
+            android:id="@+id/img_calificada"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+
+
+            />
+
+        <TextView
+            android:text="@string/mensaje_cantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/msg_cant_time"
+            android:layout_weight="1"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:text="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_cant_time"
+            android:layout_weight="1"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

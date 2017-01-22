@@ -31,6 +31,11 @@ android {
                 versionName "1.0-depago"
 
             }
+            gratis{
+                applicationId "siono.game.android.av.siono.gratis"
+                versionName "1.0-depago"
+
+            }
         }
     }
     productFlavors {

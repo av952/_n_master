@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_level_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/niveles"
+    android:orientation="vertical"
+    android:weightSum="6"
+    tools:context="siono.game.android.av.siono.depago.Level_1"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center"
+        android:background="@color/gris"
+        android:paddingBottom="10dp"
+
+        >
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="siono.game.android.av.siono.depago.Frag_home"
+            android:id="@+id/fragment"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_frag_home"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/vidas"
+            android:src="@drawable/vidas2_3"
+            android:paddingTop="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A "
+            android:textSize="30dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/microno"
+
+            />
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="siono.game.android.av.siono.depago.Frag_levels"
+            android:id="@+id/fragment2"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_frag_levels" />
+
+    </LinearLayout>
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space1"
+        android:layout_weight="2"
+        />
+
+
+    <Button
+        android:layout_width="@dimen/botone_pregunta_ancho"
+        android:layout_height="@dimen/botone_pregunta_alto"
+        android:id="@+id/elbotonquepregunta"
+        android:layout_gravity="center"
+        android:background="@drawable/basebotones_2"
+        android:text="@string/verdura"
+        android:textSize="@dimen/letra_pregunta"
+        android:textColor="@color/blanco"
+        android:layout_marginBottom="10dp"
+        />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_weight="3.5"
+        android:background="@color/blanco"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/imagen_central"
+            android:layout_height="@dimen/imagen_central"
+            android:id="@+id/imagenes_level_1"
+            android:layout_weight="1"
+            android:src="@drawable/aasparagus256"
+            android:layout_gravity="center"
+            android:background="@color/blanco"
+            />
+
+
+    </LinearLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space5"
+        android:layout_weight="0.5"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/botones_niveles"
+            android:id="@+id/btnsi"
+            android:layout_weight="1"
+            android:src="@drawable/btn_si"
+            android:adjustViewBounds="true"
+            />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/botones_niveles"
+            android:id="@+id/btnno"
+            android:layout_weight="1"
+            android:src="@drawable/btn_no"
+            android:adjustViewBounds="true"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

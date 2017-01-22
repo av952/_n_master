@@ -15,7 +15,7 @@ public class Cronometro implements Runnable
     private String salida;                  // Salida formateada de los datos del cronómetro
 
 
-    public Level_1 level_1 = new Level_1();
+   // public Level_1 level_1 = new Level_1();
 
 
     /**
@@ -62,9 +62,9 @@ public class Cronometro implements Runnable
                             public void run()
                             {
                                     etiq.setText(salida);
-                                if(segundos==0){
+                                /*if(segundos==0){
                                     level_1.fin_juego_set(2);
-                                }
+                                }*/
                             }
                         });
                     }
