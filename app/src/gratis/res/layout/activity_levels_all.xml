@@ -45,13 +45,18 @@
             android:layout_weight="1" />
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="4"
+        android:weightSum="6"
         android:orientation="vertical"
-
         >
+
+
+
         <ImageView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -60,10 +65,21 @@
             android:id="@+id/btn_level_1"
             android:adjustViewBounds="true"
             android:layout_margin="10dp"
-            android:background="@drawable/btn_level_1_wp"
+            android:src="@drawable/btn_level_1_wp"
             android:elevation="10dp"
 
             />
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_level_4"
+            android:id="@+id/btn_level_4"
+            android:adjustViewBounds="true"
+            android:layout_margin="10dp"
+            />
+
 
         <ImageView
             android:layout_height="wrap_content"
@@ -74,7 +90,8 @@
             android:id="@+id/btn_level_2"
             android:adjustViewBounds="true"
             android:layout_margin="10dp"
-            ></ImageView>
+            />
+
 
         <ImageView
             android:layout_height="wrap_content"
@@ -87,5 +104,14 @@
             android:layout_margin="10dp"
             />
 
+
+
+
+
+
+
+
+
     </LinearLayout>
+</ScrollView>
 </LinearLayout>

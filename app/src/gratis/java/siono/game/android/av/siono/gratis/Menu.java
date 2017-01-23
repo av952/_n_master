@@ -75,14 +75,16 @@ Frag_home.OnFragmentInteractionListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.creditos:
-                sp.play(flujoDeMusica,1,1,0,0,1);
+                sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                 //para resetiar
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("activacion_level2",false);
                 editor.putBoolean("activacion_level3",false);
+                editor.putBoolean("activacion_level4",false);
                 editor.putInt("cuanta_estrella",0);
                 editor.putFloat("opacidad2",0.5f);
                 editor.putFloat("opacidad3",0.5f);
+                editor.putFloat("opacidad4",0.5f);
 
                 editor.commit();
                 //fragmentTransaction.commit();

@@ -2,6 +2,8 @@ package siono.game.android.av.siono;
 
 import android.text.GetChars;
 
+import java.util.ArrayList;
+
 /**
  * Created by Usuario on 11/01/2017.
  */
@@ -9,7 +11,7 @@ import android.text.GetChars;
 public interface Comunicacion_niveles {
 
     int intervalo =2000;//para el metodo onbackpresed
-    int tiempototal = 10000;
+    int tiempototal = 5000;
 
 
     //IMAGENES RANDOM-------------------------------------LEVEL_1-----------------------------------
@@ -40,7 +42,7 @@ public interface Comunicacion_niveles {
             R.drawable.jungle_web_8,R.drawable.jungle_web_9,R.drawable.jungle_web_10,R.drawable.jungle_web_11,
             R.drawable.jungle_web_12,R.drawable.jungle_web_13
     };
-    //IMAGENES RANDOM-------------------------------------LEVEL_23
+    //IMAGENES RANDOM-------------------------------------LEVEL_3
     int[]imagenes_animales_level3={
             R.drawable.ocean_webp_1,R.drawable.ocean_webp_2,R.drawable.ocean_webp_4,
             R.drawable.ocean_webp_5,R.drawable.ocean_webp_6,R.drawable.ocean_webp_7,R.drawable.ocean_webp_8,
@@ -54,6 +56,27 @@ public interface Comunicacion_niveles {
             R.drawable.home_webp_8,R.drawable.home_webp_9, R.drawable.home_webp_10
 
     };
+    //IMAGENES RANDOM-------------------------------------LEVEL_4
+
+    int[] imagenes_level_4={
+            R.drawable.aire_1,R.drawable.aire_2,R.drawable.aire_3,R.drawable.aire_4,
+            R.drawable.aire_5,R.drawable.aire_6,R.drawable.aire_7,R.drawable.aire_8,
+
+            R.drawable.tierra_1,R.drawable.tierra_2,R.drawable.tierra_3,R.drawable.tierra_4,
+            R.drawable.tierra_5,R.drawable.tierra_6,R.drawable.tierra_7,R.drawable.tierra_8,
+            R.drawable.tierra_9,R.drawable.tierra_10,
+
+            R.drawable.agua_1,R.drawable.agua_2,R.drawable.agua_3,R.drawable.agua_4,R.drawable.agua_5,
+            R.drawable.agua_6,R.drawable.agua_7,R.drawable.agua_8
+    };
+
+    //preguntas level 4
+    int[]preguntas_level_4={
+            R.string.aire,
+            R.string.tierra,
+            R.string.agua
+    };
+
 
     //preguntas
     int[]probandoestootro={

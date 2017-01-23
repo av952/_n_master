@@ -33,7 +33,7 @@ android {
             }
             gratis{
                 applicationId "siono.game.android.av.siono.gratis"
-                versionName "1.0-depago"
+                versionName "1.0-free"
 
             }
         }

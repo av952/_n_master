@@ -24,8 +24,8 @@ import siono.game.android.av.siono.Cronometro;
 import siono.game.android.av.siono.Cronometro_2;
 import siono.game.android.av.siono.R;
 
-public class Level_3 extends AppCompatActivity  implements Comunicacion_niveles, Frag_home.OnFragmentInteractionListener,
-Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
+public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles, Frag_home.OnFragmentInteractionListener,
+        Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     private int p,op,cantidad,ran,bien,mal,cuantasvidas,pre;
     private ImageView vida,btn_si,btn_no, img_level_2,img_preg;
@@ -55,11 +55,14 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     private boolean interruptor;
 
+    private int cant_imagenes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_3);
+
 
         interruptor = true;
         cuentaatras();
@@ -111,6 +114,13 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
+        //guardo la cantidad de imagenes es tes variable para utilizarlo en la logica
+        cant_imagenes = imagenes_level_4.length;
+
+
+
     }
 
     @Override
@@ -142,45 +152,43 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     @Override
     public void evaluacion() {
-        if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& pre==1){//maritimo/si/maritomo=si
+        if(p<=7 && op==1 && cantidad<=cant_imagenes-1&& pre==0){//aire/si/aire=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& pre==1){//maritimo/no/maritimo=no
+        }else if(p<=7 && op==2 && cantidad<=cant_imagenes-1&& pre==0){//aire/no/aire=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 || pre ==2)){//maritimo/si/terrestre/aereo=no
+        }else if(p<=7 && op==1 && cantidad<=cant_imagenes-1&& (pre==1 || pre ==2)){//aire/si/tierra/agua=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p<=7 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//maritimo/no/terrestre/aereo=si
+        }else if(p<=7 && op==2 && cantidad<=cant_imagenes-1&& (pre==1 ||pre==2)){//aire/no/tierra/agua=si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
-        }else if(p>7 &&p<=22 && op==1 && cantidad<=imagenesfruver.length-1&& pre==0){//terrestre/si/terrestre=si
+        }else if(p>7 &&p<=17 && op==1 && cantidad<=cant_imagenes-1&& pre==1){//tierra/si/tierra=si
             ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
             bien++;
-        }else if(p>7 &&p<=21 && op==2 && cantidad<=imagenesfruver.length-1&& pre==0){//terrestre/no/terrestre=no
+        }else if(p>7 &&p<=17 && op==2 && cantidad<=cant_imagenes-1&& pre==1){//tierra/no/tierrae=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>7 &&p<=21 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//terrestre/si/maritmo/aereo=no
+        }else if(p>7 &&p<=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//tierra/si/aire/agua=no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
-        }else if(p>7 &&p<=21 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==1 ||pre==2)){//terrestre/no/maritimo/aereo = si
+        }else if(p>7 &&p<=17 && op==2 && cantidad<=cant_imagenes-1&& (pre==0 ||pre==2)){//tierra/no/aire/agua = si
+            ok.play(flujoDeMusica,1,1,0,0,1);
+            bien++;
+        } else if(p>=18 && op==1 && cantidad<=cant_imagenes-1&& pre==2){//agua/si/agua= si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
-
-        else if(p>=21 && op==1 && cantidad<=imagenesfruver.length-1&& pre==2){//aereo/si/aereo= si
-            ok.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
-        }
-        else if(p>=21 && op==2 && cantidad<=imagenesfruver.length-1&& pre==2){//aereo/no/aereo = no
+        else if(p>=18 && op==2 && cantidad<=cant_imagenes-1&& pre==2){//agua/no/agua = no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }
-        else if(p>=21 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//aereo/si/terrestre/maritomo = no
+        else if(p>=18 && op==1 && cantidad<=cant_imagenes-1&& (pre==0||pre==1)){//agua/si/tierra/aire = no
             no.play(flujoDeMusica,1,1,0,0,1);
             mal++;
         }
-        else if(p>=21 && op==2 && cantidad<=imagenesfruver.length-1&& (pre==0||pre==1)){//aereo/no/terrestre/maritimo = si
+        else if(p>=18 && op==2 && cantidad<=cant_imagenes-1&& (pre==0||pre==1)){//agua/ni/tierra/aire = si
             ok.play(flujoDeMusica,1,1,0,0,1);
             bien++;
         }
@@ -189,40 +197,38 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         quitavidas();
 
     }
-
     @Override
     public void respuestaFinal(int cantbuenas) {
         int calif=0;
 
-        if(cantbuenas==imagenes_animales_level3.length-1){
+        if(cantbuenas==imagenes_level_4.length-1){
             calif=0;
 
-        }else if(cantbuenas<=imagenes_animales_level3.length-2){
+        }else if(cantbuenas<=imagenes_level_4.length-2){
             calif=1;
 
         }
 
         fin_juego_set(calif);
-
     }
 
     @Override
     public void azar() {
         //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
-        pre= random.nextInt(preguntas_level_3.length);
+        pre= random.nextInt(preguntas_level_4.length);
 
-        p = random.nextInt(imagenes_animales_level3.length);//da una imagen random
-        ran = random.nextInt(preguntas_level_3.length);//pregunta random
+        p = random.nextInt(imagenes_level_4.length);//da una imagen random
+        ran = random.nextInt(preguntas_level_4.length);//pregunta random
 
-        if(cantidad<= imagenes_animales_level3.length-1){
+        if(cantidad<= imagenes_level_4.length-1){
             //btn_preguntado.setText(cambio);
             btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
-            btn_preguntado.setText(preguntas_level_3[pre]);
+            btn_preguntado.setText(preguntas_level_4[pre]);
 
 
             //img_preg.setImageResource(array_pregunta[pre]);//aleatorio para la pregunta
             //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
-            img_level_2.setImageResource(imagenes_animales_level3[p]);//aleatorio para la imagen
+            img_level_2.setImageResource(imagenes_level_4[p]);//aleatorio para la imagen
         }else {
             respuestaFinal(bien);
         }
@@ -342,3 +348,4 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     }
 }
+
