@@ -33,25 +33,30 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     private int res,res2;
 
-    private Level_1 level_1 = new Level_1();
-
     private int[] respuestacalifica2={
             R.drawable.resp_pref_3_700x516,
+            R.drawable.resp_bien_3_700x516_2estrellas,
             R.drawable.resp_bien_3_700x516,
-            R.drawable.resp_fallo_3_700x516};
+            R.drawable.resp_fallo_3_700x516
+    };
 
     private int[] array_respuesta_txt={
       R.string.perfecto,
             R.string.bien_echo,
+            R.string.bien,
             R.string.fallaste
 
     };
 
-    private TextView tv_califica,tv_tiempo;
+    private TextView tv_califica,tv_tiempo,tv_msg;
 
     SharedPreferences share;
 
     Tile tile;
+
+
+    //para el dato de charedpreference
+    private int tiempoobtenido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +82,12 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
         //TOMA EL TIEMPO TOTAL DEL JUEGO
         tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
-        tv_tiempo.setText(Integer.toString(res2)+" segundos");
+
+        //TEXTO MENSAJE
+        tv_msg = (TextView)findViewById(R.id.msg_cant_time);
+
+
+
 
         tv_califica.setText(array_respuesta_txt[res]);
 
@@ -87,8 +97,42 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
 
         share = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
+
+        //ALAMCENA EL TIEMPO RECORD
+        tiempoobtenido = share.getInt("tiempomax",0);
+
+
+        //INICIA METODO
+        record();
         colocandoestrellas();
 
+
+
+    }
+
+    public void record(){
+        if(res==3){
+
+            if(tiempoobtenido>res){
+                tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tv_msg.setText(R.string.mensaje_cantidad);
+
+            }else if(tiempoobtenido<res){
+
+                tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tv_msg.setText("tienes un redord");
+
+                SharedPreferences.Editor editor = share.edit();
+                editor.putInt("tiempomax",res);
+                editor.commit();
+            }
+
+
+        }else {
+            //muestro una respuesta en caso de que falle
+            tv_msg.setText(R.string.mensaje_cantidad_2);
+            tv_tiempo.setText(" ");
+        }
 
     }
 
@@ -101,10 +145,10 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
                 estrellas=estrellas+3;
                 break;
             case 1:
-                estrellas=estrellas+1;
+                estrellas=estrellas+2;
                 break;
             case 2:
-                estrellas=estrellas+0;
+                estrellas=estrellas+1;
 
         }
 

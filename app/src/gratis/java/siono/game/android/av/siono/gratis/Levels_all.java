@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import siono.game.android.av.siono.R;
 
 public class Levels_all extends AppCompatActivity implements View.OnClickListener,Frag_home.OnFragmentInteractionListener{
@@ -92,6 +96,14 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         cantidadestrellas(estrellas);
 
         cambioopacidad();
+
+
+        //se crea esto para la publicidad
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -149,7 +161,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         if(estrellas>=6 && op==2){
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("cuanta_estrella",estrellas-3);
+            editor.putInt("cuanta_estrella",estrellas-6);
             editor.putBoolean("activacion_level2",true);
             editor.putFloat("opacidad2",1f);
             editor.commit();
@@ -162,7 +174,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         }else if (estrellas>=9&&op==3){
 
             SharedPreferences.Editor editor =sharedPreferences.edit();
-            editor.putInt("cuanta_estrella",estrellas-6);
+            editor.putInt("cuanta_estrella",estrellas-9);
             editor.putBoolean("activacion_level3",true);
             editor.putFloat("opacidad3",1f);
             editor.commit();
@@ -172,7 +184,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
         }else if (estrellas>=3&&op==4){
             SharedPreferences.Editor editor =sharedPreferences.edit();
-            editor.putInt("cuanta_estrella",estrellas-9);
+            editor.putInt("cuanta_estrella",estrellas-3);
             editor.putBoolean("activacion_level4",true);
             editor.putFloat("opacidad4",1f);
             editor.commit();
@@ -221,7 +233,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
     public void onStop(){
         super.onStop();
-        finish();
+        //finish();
     }
 
     private void cantidadestrellas(int e) {

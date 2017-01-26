@@ -179,16 +179,30 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     @Override
     /*ESTE METODO QUE ES LLAMADO DE LA INTERFAZ COMUNICACIÓN NIVELES
     * ME ASIGNA UNA CALIFICACIÓN DEPENDIENDO EL NUMERO DE MALAS O BUENAS QUE TENGA*/
-    public void respuestaFinal(int cantbuenas) {
-        int calif=0;
+    public void respuestaFinal(int cant) {
 
+        int calif=0;
+        //evaluo la cantidad de malas
+        if(cant==0){
+            calif=0;
+        }else if(cant==1){
+            calif=1;
+        }else if(cant==2){
+            calif=2;
+        }else {
+            calif=3;
+
+        }
+
+
+/*
         if(cantbuenas==imagenesfruver.length-1){
             calif=0;
 
         }else if(cantbuenas<=imagenesfruver.length-2){
             calif=1;
 
-        }
+        }*/
 
         fin_juego_set(calif);
 
@@ -215,7 +229,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
             //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
             img_level_2.setImageResource(imagenes_animales[p]);//aleatorio para la imagen
         }else {
-            respuestaFinal(bien);
+            respuestaFinal(mal);
         }
 
     }
@@ -305,7 +319,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     @Override
     public void quitavidas() {
         if(mal==3){
-            fin_juego_set(2);
+            fin_juego_set(3);
         }
                         /*EVALUO LA CANTIDAD DE VIDAS QUE VA PERDIENDO CON EL FIN DE PASAR EL VALOR DE CUANTAS VIDAS
         * EN  EL ARRAY DE SET_IMAGERESOURSE Y CAMBIAR LA IMAGEN QUE SE MUESTRA*/
@@ -352,7 +366,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         super.onStop();
         countDownTimer.cancel();
-        finish();
+        //finish();
 
     }
     @Override

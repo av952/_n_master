@@ -28,16 +28,17 @@
 
 
     <string name="creditos">
-        Desarrollador: AVXC
-        Diseño: AVXC
-        Apartado gráfico (frutas,verduras,animales) Freepik  -http://www.freepik.com
+        Juego desarrollado y diseñado por A.V.XC. El apartado gráfico de los
+            niveles y el fondo fue obtenido de Freepik  -http://www.freepik.com
     </string>
 
-    <string name="bien_echo">BIEN ECHO</string>
+    <string name="bien_echo">MUY BIEN</string>
     <string name="fallaste">FALLASTE</string>
     <string name="perfecto">PERFECTO</string>
+    <string name="bien">BIEN</string>
 
     <string name="mensaje_cantidad">Terminaste en:</string>
+    <string name="mensaje_cantidad_2">Vuelve a intenralo :)</string>
 
 
 </resources>

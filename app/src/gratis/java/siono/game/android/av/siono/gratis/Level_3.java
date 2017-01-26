@@ -191,8 +191,22 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
     }
 
     @Override
-    public void respuestaFinal(int cantbuenas) {
+    public void respuestaFinal(int cant) {
+
         int calif=0;
+        //evaluo la cantidad de malas
+        if(cant==0){
+            calif=0;
+        }else if(cant==1){
+            calif=1;
+        }else if(cant==2){
+            calif=2;
+        }else {
+            calif=3;
+
+        }
+
+       /* int calif=0;
 
         if(cantbuenas==imagenes_animales_level3.length-1){
             calif=0;
@@ -200,7 +214,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         }else if(cantbuenas<=imagenes_animales_level3.length-2){
             calif=1;
 
-        }
+        }*/
 
         fin_juego_set(calif);
 
@@ -224,7 +238,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
             //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
             img_level_2.setImageResource(imagenes_animales_level3[p]);//aleatorio para la imagen
         }else {
-            respuestaFinal(bien);
+            respuestaFinal(mal);
         }
 
     }
@@ -290,7 +304,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         }
         vida.setImageResource(arrayvidas[cuantasvidas]);
         if(mal==3){
-            fin_juego_set(2);
+            fin_juego_set(3);
         }
 
     }
@@ -327,7 +341,7 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
         super.onStop();
         countDownTimer.cancel();
-        finish();
+        //finish();
 
     }
     @Override

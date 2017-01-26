@@ -44,10 +44,10 @@ Frag_home.OnFragmentInteractionListener{
         //se crea la interfas grafica
         btnbegin =(ImageView) findViewById(R.id.btnBegin);
         //btnhtp =(ImageView) findViewById(R.id.btnHtp);
-        btnlevels =(ImageView) findViewById(R.id.btncreditos);
+        //btnlevels =(ImageView) findViewById(R.id.btncreditos);
         btnbegin.setOnClickListener(this);
         //btnhtp.setOnClickListener(this);
-        btnlevels.setOnClickListener(this);
+        //btnlevels.setOnClickListener(this);
 
         //SOUNDPOOL BUTTONS
         sp = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
@@ -87,6 +87,7 @@ Frag_home.OnFragmentInteractionListener{
                 editor.putFloat("opacidad4",0.5f);
 
                 editor.commit();
+                fragTran_Creditos.commit();
                 //fragmentTransaction.commit();
                 break;
             case R.id.btnBegin:
@@ -95,12 +96,12 @@ Frag_home.OnFragmentInteractionListener{
                 startActivity(i);
                 finish();
                 break;
-            case R.id.btncreditos:
+          /* case R.id.btncreditos:
                 sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
-               /* Intent ir3 = new Intent(this,Frag_creditos.class);
-                startActivity(ir3);*/
-                fragTran_Creditos.commit();
-                break;
+                Intent ir3 = new Intent(this,Frag_creditos.class);
+                startActivity(ir3);
+
+                break;*/
 
         }
 

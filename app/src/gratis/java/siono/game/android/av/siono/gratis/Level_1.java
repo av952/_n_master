@@ -244,17 +244,28 @@ Comunicacion_niveles{
 
     //como que este no sirbe para nada
     @Override
-    public void respuestaFinal(int cantbuenas) {
+    public void respuestaFinal(int cant) {
 
         int calif=0;
 
+        //evaluo la cantidad de malas
+        if(cant==0){
+            calif=0;
+        }else if(cant==1){
+            calif=1;
+        }else if(cant==2){
+            calif=2;
+        }
+/*
         if(cantbuenas==imagenesfruver.length-1){
             calif=0;
 
-        }else if(cantbuenas<=imagenesfruver.length-2){
+        }else if(cantbuenas==imagenesfruver.length-2){
             calif=1;
 
-        }
+        }else if(cantbuenas<=imagenesfruver.length-3){
+            calif=2;
+        }*/
 
         fin_juego_set(calif);
 
@@ -271,7 +282,7 @@ Comunicacion_niveles{
             btn_preguntas.setText(array_pregunta[ran]);
             img_level_1.setImageResource(imagenesfruver[p]);//aleatorio para la imagen
         }else {
-            respuestaFinal(bien);
+            respuestaFinal(mal);
         }
     }
 
@@ -320,7 +331,6 @@ Comunicacion_niveles{
             Toast.makeText(this,"vuelve a aprecionar para salir",Toast.LENGTH_SHORT).show();
         }
         tiempoprimerclick = System.currentTimeMillis();
-
     }
 
     @Override
@@ -374,19 +384,14 @@ Comunicacion_niveles{
         }
         vida.setImageResource(arrayvidas[cuantasvidas]);
         if(mal==3){
-            fin_juego_set(2);
+            fin_juego_set(3);
         }
     }
 
-    public void silenciar(){
-        countDownTimer.cancel();
-    }
-
     public void onStop(){
-
         super.onStop();
         countDownTimer.cancel();
-        finish();
+        //finish();
 
     }
 

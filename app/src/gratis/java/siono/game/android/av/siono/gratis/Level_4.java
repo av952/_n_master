@@ -198,8 +198,22 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
     }
     @Override
-    public void respuestaFinal(int cantbuenas) {
+    public void respuestaFinal(int cant) {
         int calif=0;
+        //evaluo la cantidad de malas
+        if(cant==0){
+            calif=0;
+        }else if(cant==1){
+            calif=1;
+        }else if(cant==2){
+            calif=2;
+        }else {
+            calif=3;
+
+        }
+
+
+       /* int calif=0;
 
         if(cantbuenas==imagenes_level_4.length-1){
             calif=0;
@@ -207,7 +221,7 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
         }else if(cantbuenas<=imagenes_level_4.length-2){
             calif=1;
 
-        }
+        }*/
 
         fin_juego_set(calif);
     }
@@ -230,7 +244,7 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
             //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
             img_level_2.setImageResource(imagenes_level_4[p]);//aleatorio para la imagen
         }else {
-            respuestaFinal(bien);
+            respuestaFinal(mal);
         }
 
     }
@@ -296,7 +310,7 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
         }
         vida.setImageResource(arrayvidas[cuantasvidas]);
         if(mal==3){
-            fin_juego_set(2);
+            fin_juego_set(3);
         }
 
     }
@@ -333,7 +347,7 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
         super.onStop();
         countDownTimer.cancel();
-        finish();
+        //finish();
 
     }
     @Override
