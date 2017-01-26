@@ -39,6 +39,7 @@
 
     <string name="mensaje_cantidad">Terminaste en:</string>
     <string name="mensaje_cantidad_2">Vuelve a intenralo :)</string>
+    <string name="record">Tu nuevo record es: </string>
 
 
 </resources>

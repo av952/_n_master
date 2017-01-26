@@ -35,7 +35,9 @@ public class Splash extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this,R.raw.avxc);
         mediaPlayer.setLooping(false);
         mediaPlayer.setVolume(0.2f,0.2f);
-        mediaPlayer.start();
+
+        //lo quite por que podria no gustar el sonido
+        //mediaPlayer.start();
 
 
         //soundpool

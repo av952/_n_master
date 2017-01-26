@@ -110,17 +110,19 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     public void record(){
         //tv_tiempo.setText(Integer.toString(res2)+" segundos");
-        tiempoobtenido = share.getInt("tiempomaximo",0);
+        tiempoobtenido = share.getInt("tiempomaximo",120);
         if(res!=3){
 
-            if(tiempoobtenido>res2){
+
+            //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
+            if(tiempoobtenido<res2){
                 tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tv_msg.setText(R.string.mensaje_cantidad);
 
-            }else if(tiempoobtenido<res2){
+            }else if(tiempoobtenido>res2){
 
                 tv_tiempo.setText(Integer.toString(res2)+" segundos");
-                tv_msg.setText("tienes un redord");
+                tv_msg.setText(R.string.record);
 
                 SharedPreferences.Editor editor = share.edit();
                 editor.putInt("tiempomaximo",res2);
