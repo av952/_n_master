@@ -85,6 +85,7 @@ Frag_home.OnFragmentInteractionListener{
                 editor.putFloat("opacidad2",0.5f);
                 editor.putFloat("opacidad3",0.5f);
                 editor.putFloat("opacidad4",0.5f);
+                editor.putInt("tiempomaximo",0);
 
                 editor.commit();
                 fragTran_Creditos.commit();

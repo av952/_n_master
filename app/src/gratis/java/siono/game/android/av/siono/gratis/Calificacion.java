@@ -56,14 +56,13 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
 
     //para el dato de charedpreference
-    private int tiempoobtenido;
+    private int tiempoobtenido=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificacion);
 
-        Intent intent = new Intent(this,Level_1.class);
 
         //toma el paquete de datos de la actividad que la llamo
         Bundle datos = this.getIntent().getExtras();
@@ -88,7 +87,6 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
 
 
-
         tv_califica.setText(array_respuesta_txt[res]);
 
         img_calif.setImageResource(respuestacalifica2[res]);
@@ -99,10 +97,10 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         share = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
 
         //ALAMCENA EL TIEMPO RECORD
-        tiempoobtenido = share.getInt("tiempomax",0);
 
 
-        //INICIA METODO
+
+        //INICIA METODOS
         record();
         colocandoestrellas();
 
@@ -111,22 +109,23 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
     }
 
     public void record(){
-        if(res==3){
+        //tv_tiempo.setText(Integer.toString(res2)+" segundos");
+        tiempoobtenido = share.getInt("tiempomaximo",0);
+        if(res!=3){
 
-            if(tiempoobtenido>res){
+            if(tiempoobtenido>res2){
                 tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tv_msg.setText(R.string.mensaje_cantidad);
 
-            }else if(tiempoobtenido<res){
+            }else if(tiempoobtenido<res2){
 
                 tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tv_msg.setText("tienes un redord");
 
                 SharedPreferences.Editor editor = share.edit();
-                editor.putInt("tiempomax",res);
+                editor.putInt("tiempomaximo",res2);
                 editor.commit();
             }
-
 
         }else {
             //muestro una respuesta en caso de que falle
