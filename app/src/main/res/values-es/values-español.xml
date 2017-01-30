@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SioNo</string>
+    <string name="app_name">SioNo Kids</string>
 
 
     <string name="granja">¿GRANJA?</string>
@@ -40,6 +40,11 @@
     <string name="mensaje_cantidad">Terminaste en:</string>
     <string name="mensaje_cantidad_2">Vuelve a intenralo :)</string>
     <string name="record">Tu nuevo record es: </string>
+
+    <string name="cuentasegundos">Segundos</string>
+
+    <string name="vuelveaprecionar">Vuelve a precionar para salir</string>
+
 
 
 </resources>

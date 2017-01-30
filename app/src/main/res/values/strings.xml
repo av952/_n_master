@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SioNo</string>
+    <string name="app_name">SioNo Kids</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="granja">¿GRANJA?</string>
@@ -37,6 +37,10 @@
     <string name="mensaje_cantidad">Terminaste en:</string>
     <string name="mensaje_cantidad_2">Vuelve a intenralo :)</string>
     <string name="record">Tu nuevo record es: </string>
+
+    <string name="cuentasegundos">Segundos</string>
+
+    <string name="vuelveaprecionar">Vuelve a precionar para salir</string>
 
 
 

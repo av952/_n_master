@@ -3,6 +3,10 @@ package siono.game.android.av.siono.gratis;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.service.quicksettings.Tile;
@@ -15,40 +19,46 @@ import android.widget.Toast;
 import siono.game.android.av.siono.R;
 
 public class Calificacion extends AppCompatActivity implements Frag_levels.OnFragmentInteractionListener,
-Frag_home.OnFragmentInteractionListener,View.OnClickListener{
+        Frag_home.OnFragmentInteractionListener, View.OnClickListener {
 
     private int calificacion_int;
     private ImageView img_calif;
     private int getrespuesta;
     //lo de abajo es para el backonpresed
-    private final int intervalo =2000;
+    private final int intervalo = 2000;
     private long tiempoprimerclick;
 
     private int estrellas;
 
+    //sonido
+    private SoundPool gano,perdio;
+    private int flujodemusica;
+
+    private MediaPlayer mpgano,mpperdio;
+
 
     //VARIABLES PARA GURDAR PUNTUACION
-    private int  max =0;
+    private int max = 0;
 
 
-    private int res,res2;
+    private int res, res2,queniveles;
 
-    private int[] respuestacalifica2={
+    private int[] respuestacalifica2 = {
             R.drawable.resp_pref_3_700x516,
             R.drawable.resp_bien_3_700x516_2estrellas,
             R.drawable.resp_bien_3_700x516,
             R.drawable.resp_fallo_3_700x516
     };
 
-    private int[] array_respuesta_txt={
-      R.string.perfecto,
+    private int[] array_respuesta_txt = {
+            R.string.perfecto,
             R.string.bien_echo,
             R.string.bien,
             R.string.fallaste
 
     };
 
-    private TextView tv_califica,tv_tiempo,tv_msg;
+    private TextView tv_califica, tv_tiempo, tv_msg;
 
     SharedPreferences share;
 
@@ -56,7 +66,7 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
 
     //para el dato de charedpreference
-    private int tiempoobtenido=0;
+    private int tiempoobtenido = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +83,22 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         Bundle datos2 = this.getIntent().getExtras();
         res2 = datos2.getInt("cronometro2");
 
+        //recojo el nivel que me envio el dato
+        Bundle datosnivel = this.getIntent().getExtras();
+        queniveles = datosnivel.getInt("queniveles");
+
+
 
         //cargarpreferencias();
 
-        img_calif = (ImageView)findViewById(R.id.img_calificada);
-        tv_califica = (TextView)findViewById(R.id.txt_respuesta);
+        img_calif = (ImageView) findViewById(R.id.img_calificada);
+        tv_califica = (TextView) findViewById(R.id.txt_respuesta);
 
         //TOMA EL TIEMPO TOTAL DEL JUEGO
-        tv_tiempo = (TextView)findViewById(R.id.txt_cant_time);
+        tv_tiempo = (TextView) findViewById(R.id.txt_cant_time);
 
         //TEXTO MENSAJE
-        tv_msg = (TextView)findViewById(R.id.msg_cant_time);
-
-
+        tv_msg = (TextView) findViewById(R.id.msg_cant_time);
 
         tv_califica.setText(array_respuesta_txt[res]);
 
@@ -94,67 +107,161 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         img_calif.setOnClickListener(this);
 
 
-        share = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
+        share = getSharedPreferences("guardadodeniveles", Context.MODE_PRIVATE);
 
-        //ALAMCENA EL TIEMPO RECORD
+        //MUSICA
 
+        gano = new SoundPool(0, AudioManager.STREAM_MUSIC,0);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujodemusica =gano.load(this,R.raw.sonidogano_2,1);
 
+        perdio = new SoundPool(0,AudioManager.STREAM_MUSIC,0);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujodemusica =perdio.load(this,R.raw.sonidoperdio_2,1);
+
+        //mediaplayer
+
+        gano.play(flujodemusica,1,1,0,0,1);
+        //perdio.play(flujodemusica,1,1,0,0,1);
 
         //INICIA METODOS
-        record();
+        //le paso a record el dato del nivel que lo llamo
+        record(queniveles);
         colocandoestrellas();
+        sonidorespuesta(res);
 
+    }
+
+    public void record(int llamadanivel) {
+
+        switch (llamadanivel){
+            case 1:
+                //tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tiempoobtenido = share.getInt("tiempomaximo", 120);
+                if (res != 3) {
+
+
+                    //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
+                    if (tiempoobtenido < res2) {
+
+                        tv_msg.setText(R.string.mensaje_cantidad);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+                    } else if (tiempoobtenido > res2) {
+
+                        tv_msg.setText(R.string.record);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+
+                        SharedPreferences.Editor editor = share.edit();
+                        editor.putInt("tiempomaximo", res2);
+                        editor.commit();
+                    }
+
+                } else {
+                    //muestro una respuesta en caso de que falle
+                    tv_msg.setText(R.string.mensaje_cantidad_2);
+                    tv_tiempo.setText(" ");
+                }
+
+                break;
+
+            case 2:
+                //tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tiempoobtenido = share.getInt("tiempomaximo2", 120);
+                if (res != 3) {
+
+                    //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
+                    if (tiempoobtenido < res2) {
+
+                        tv_msg.setText(R.string.mensaje_cantidad);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+                    } else if (tiempoobtenido > res2) {
+
+                        tv_msg.setText(R.string.record);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+
+                        SharedPreferences.Editor editor = share.edit();
+                        editor.putInt("tiempomaximo2", res2);
+                        editor.commit();
+                    }
+
+                } else {
+                    //muestro una respuesta en caso de que falle
+                    tv_msg.setText(R.string.mensaje_cantidad_2);
+                    tv_tiempo.setText(" ");
+                }
+
+                break;
+
+            case 3:
+                //tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tiempoobtenido = share.getInt("tiempomaximo3", 120);
+                if (res != 3) {
+
+
+                    //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
+                    if (tiempoobtenido < res2) {
+
+                        tv_msg.setText(R.string.mensaje_cantidad);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+                    } else if (tiempoobtenido > res2) {
+
+                        tv_msg.setText(R.string.record);
+                        tv_tiempo.setText(Integer.toString(res2));
+
+
+                        SharedPreferences.Editor editor = share.edit();
+                        editor.putInt("tiempomaximo3", res2);
+                        editor.commit();
+                    }
+
+                } else {
+                    //muestro una respuesta en caso de que falle
+                    tv_msg.setText(R.string.mensaje_cantidad_2);
+                    tv_tiempo.setText(" ");
+                }
+                break;
+        }
 
 
     }
 
-    public void record(){
-        //tv_tiempo.setText(Integer.toString(res2)+" segundos");
-        tiempoobtenido = share.getInt("tiempomaximo",120);
-        if(res!=3){
 
+    public void sonidorespuesta(int r){
+        if(r<=2){
+            mpgano= MediaPlayer.create(this,R.raw.sonidogano_2);
+            mpgano.setLooping(false);
+            mpgano.start();
 
-            //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
-            if(tiempoobtenido<res2){
-                tv_tiempo.setText(Integer.toString(res2)+" segundos");
-                tv_msg.setText(R.string.mensaje_cantidad);
-
-            }else if(tiempoobtenido>res2){
-
-                tv_tiempo.setText(Integer.toString(res2)+" segundos");
-                tv_msg.setText(R.string.record);
-
-                SharedPreferences.Editor editor = share.edit();
-                editor.putInt("tiempomaximo",res2);
-                editor.commit();
-            }
-
-        }else {
-            //muestro una respuesta en caso de que falle
-            tv_msg.setText(R.string.mensaje_cantidad_2);
-            tv_tiempo.setText(" ");
+        }else{
+            mpperdio =MediaPlayer.create(this,R.raw.sonidoperdio_3);
+            mpperdio.setLooping(false);
+            mpperdio.start();
         }
-
     }
 
     private void colocandoestrellas() {
 
-        estrellas = share.getInt("cuanta_estrella",0);
+        estrellas = share.getInt("cuanta_estrella", 0);
 
-        switch (res){
+        switch (res) {
             case 0:
-                estrellas=estrellas+3;
+                estrellas = estrellas + 3;
                 break;
             case 1:
-                estrellas=estrellas+2;
+                estrellas = estrellas + 2;
                 break;
             case 2:
-                estrellas=estrellas+1;
+                estrellas = estrellas + 1;
 
         }
 
         SharedPreferences.Editor editor = share.edit();
-        editor.putInt("cuanta_estrella",estrellas);
+        editor.putInt("cuanta_estrella", estrellas);
         editor.commit();
 
     }
@@ -182,7 +289,7 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
         //tv_tiempo.setText(Integer.toString(res2));
     }*/
 
-    public void respuestaporpuntuacion(int i){
+    public void respuestaporpuntuacion(int i) {
 
     }
 
@@ -191,31 +298,33 @@ Frag_home.OnFragmentInteractionListener,View.OnClickListener{
 
     }
 
-    public int recivecalifica (int j){
+    public int recivecalifica(int j) {
 
         calificacion_int = j;
         return calificacion_int;
     }
+
     //ACCION REALIZADA CUANDO SE PRECIONA EL BOTON DE REGRESAR
-    public void onBackPressed(){
-        if(tiempoprimerclick+intervalo>System.currentTimeMillis()){
+    public void onBackPressed() {
+        if (tiempoprimerclick + intervalo > System.currentTimeMillis()) {
             super.onBackPressed();
             return;
-        }else{
-            Toast.makeText(this,"Vuelve a aprecionar para ir a niveles",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Vuelve a aprecionar para ir a niveles", Toast.LENGTH_SHORT).show();
         }
         tiempoprimerclick = System.currentTimeMillis();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.img_calificada:
-                Intent i = new Intent(this,Levels_all.class);
+                Intent i = new Intent(this, Levels_all.class);
                 startActivity(i);
                 finish();
                 break;
 
         }
     }
+
 }

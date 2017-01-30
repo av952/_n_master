@@ -267,6 +267,8 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
         intent.putExtra("respuesta",i);
         intent.putExtra("cronometro2",traedato);
+        //con esta linea le paso a la califiacion el nivel en el que me encuentro para tener records diferentes por nivel
+        intent.putExtra("queniveles",4);
 
         //SE PAUSA EL CRONOMETRO DEL NUEVO ILO CREADO
         //cronometro.pause();

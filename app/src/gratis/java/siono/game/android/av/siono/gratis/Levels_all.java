@@ -70,24 +70,13 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         flujoDeMusica = click.load(this,R.raw.click,1);//[objeto_Spoundpool].load (Context context, int resId, int priority);
 
 
-        //recibiendo datos de level 1
-        /*int tomarecibido = clase_comunicadora.get_recibe();
-        if(tomarecibido==2){
-            Intent intent = new Intent(this,Level_1.class);
-            Bundle bundle = this.getIntent().getExtras();
-            int res  = bundle.getInt("nivel_2_desbloqueado");
-            cambioopacidad(res);
-        }*/
-
-
         sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
         //nivel_superado = sharedPreferences.getInt("nivel",0);
         estrellas = sharedPreferences.getInt("cuanta_estrella",0);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("cuanta_estrella",100);
+        //editor.putInt("cuanta_estrella",100);
         editor.commit();
-
 
         key_level2 = sharedPreferences.getBoolean("activacion_level2",false);
         key_level3 = sharedPreferences.getBoolean("activacion_level3",false);
