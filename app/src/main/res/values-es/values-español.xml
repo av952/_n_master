@@ -14,9 +14,9 @@
     <string name="maritimo">¿MARITIMO?</string>
     <string name="aereo">¿AEREO?</string>
 
-    <string name="tierra">¿TIERRA?</string>
-    <string name="aire">¿AIRE?</string>
-    <string name="agua">¿AGUA?</string>
+    <string name="tierra">¿TERRESTRE?</string>
+    <string name="aire">¿AEREO?</string>
+    <string name="agua">¿MARITIMO?</string>
 
 
     <string name="advertencia_nivel">No tienes suficientes estrellas para este nivel</string>
@@ -25,11 +25,9 @@
 
 
 
-
-
-    <string name="creditos">
-        Juego desarrollado y diseñado por A.V.XC. El apartado gráfico de los
-            niveles y el fondo fue obtenido de Freepik  -http://www.freepik.com
+        <string name="creditos">
+            Juego desarrollado y diseñado por A.V.XC. Los dibujos que aparecen en los
+            niveles y el fondo fueron obtenidos de Freepik  -http://www.freepik.com
     </string>
 
     <string name="bien_echo">MUY BIEN</string>

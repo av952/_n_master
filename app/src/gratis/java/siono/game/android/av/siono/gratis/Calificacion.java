@@ -4,17 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.icu.text.AlphabeticIndex;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.service.quicksettings.Tile;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import siono.game.android.av.siono.R;
 
@@ -41,7 +45,7 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
     private int max = 0;
 
 
-    private int res, res2,queniveles;
+    private int res, res2,nivelquellama;
 
     private int[] respuestacalifica2 = {
             R.drawable.resp_pref_3_700x516,
@@ -84,8 +88,8 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
         res2 = datos2.getInt("cronometro2");
 
         //recojo el nivel que me envio el dato
-        Bundle datosnivel = this.getIntent().getExtras();
-        queniveles = datosnivel.getInt("queniveles");
+        Bundle datos3 = this.getIntent().getExtras();
+        nivelquellama = datos3.getInt("queniveles");
 
 
 
@@ -126,16 +130,36 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
 
         //INICIA METODOS
         //le paso a record el dato del nivel que lo llamo
-        record(queniveles);
+        record();
         colocandoestrellas();
         sonidorespuesta(res);
 
     }
 
-    public void record(int llamadanivel) {
+    public void record() {
 
-        switch (llamadanivel){
+        Log.i("llave", "entro a caso que abajo se emnciona");
+        Log.i("1",String.valueOf(nivelquellama));
+
+        /*CREO LA VARIABLE DE SEGUNDOS PARA LUEGO CONVERIR
+        EL DATO  DE R.STRING EN UN STRING Y ASIGNARLO A LA RESPUESTA
+        DEL TIEMPO
+         */
+        String segundos;
+        //segundos=  String.valueOf(R.string.cuentasegundos);
+
+        segundos =  " ";
+        segundos += getString( R.string.cuentasegundos);
+
+
+
+
+        Log.i("prueba",segundos);
+
+        switch (nivelquellama){
+
             case 1:
+                Log.i("2","entro a caso 1");
                 //tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tiempoobtenido = share.getInt("tiempomaximo", 120);
                 if (res != 3) {
@@ -145,12 +169,12 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                     if (tiempoobtenido < res2) {
 
                         tv_msg.setText(R.string.mensaje_cantidad);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
                     } else if (tiempoobtenido > res2) {
 
                         tv_msg.setText(R.string.record);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
 
                         SharedPreferences.Editor editor = share.edit();
@@ -167,6 +191,7 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                 break;
 
             case 2:
+                Log.i("3","entro a caso 2");
                 //tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tiempoobtenido = share.getInt("tiempomaximo2", 120);
                 if (res != 3) {
@@ -175,12 +200,12 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                     if (tiempoobtenido < res2) {
 
                         tv_msg.setText(R.string.mensaje_cantidad);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
                     } else if (tiempoobtenido > res2) {
 
                         tv_msg.setText(R.string.record);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
 
                         SharedPreferences.Editor editor = share.edit();
@@ -197,6 +222,7 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                 break;
 
             case 3:
+                Log.i("3","entro a caso 3");
                 //tv_tiempo.setText(Integer.toString(res2)+" segundos");
                 tiempoobtenido = share.getInt("tiempomaximo3", 120);
                 if (res != 3) {
@@ -206,12 +232,12 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                     if (tiempoobtenido < res2) {
 
                         tv_msg.setText(R.string.mensaje_cantidad);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
                     } else if (tiempoobtenido > res2) {
 
                         tv_msg.setText(R.string.record);
-                        tv_tiempo.setText(Integer.toString(res2));
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
 
 
                         SharedPreferences.Editor editor = share.edit();
@@ -225,6 +251,35 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
                     tv_tiempo.setText(" ");
                 }
                 break;
+
+            case 4:
+                Log.i("3","entro a caso 2");
+                //tv_tiempo.setText(Integer.toString(res2)+" segundos");
+                tiempoobtenido = share.getInt("tiempomaximo4", 120);
+                if (res != 3) {
+
+                    //evaluando que tiempoobtenido sea mayor para que el tiempo actual se considere un record
+                    if (tiempoobtenido < res2) {
+
+                        tv_msg.setText(R.string.mensaje_cantidad);
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
+
+                    } else if (tiempoobtenido > res2) {
+
+                        tv_msg.setText(R.string.record);
+                        tv_tiempo.setText(Integer.toString(res2)+segundos);
+
+
+                        SharedPreferences.Editor editor = share.edit();
+                        editor.putInt("tiempomaximo4", res2);
+                        editor.commit();
+                    }
+
+                } else {
+                    //muestro una respuesta en caso de que falle
+                    tv_msg.setText(R.string.mensaje_cantidad_2);
+                    tv_tiempo.setText(" ");
+                }
         }
 
 
@@ -289,20 +344,13 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
         //tv_tiempo.setText(Integer.toString(res2));
     }*/
 
-    public void respuestaporpuntuacion(int i) {
-
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
-    public int recivecalifica(int j) {
 
-        calificacion_int = j;
-        return calificacion_int;
-    }
 
     //ACCION REALIZADA CUANDO SE PRECIONA EL BOTON DE REGRESAR
     public void onBackPressed() {

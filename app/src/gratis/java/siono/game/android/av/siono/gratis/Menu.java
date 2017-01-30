@@ -76,8 +76,8 @@ Frag_home.OnFragmentInteractionListener{
         switch (v.getId()){
             case R.id.creditos:
                 sp.play(flujoDeMusica,0.5f,0.5f,0,0,1);
-                //para resetiar
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                //PARE RESETEAR LA APP
+                /*SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("activacion_level2",false);
                 editor.putBoolean("activacion_level3",false);
                 editor.putBoolean("activacion_level4",false);
@@ -87,7 +87,7 @@ Frag_home.OnFragmentInteractionListener{
                 editor.putFloat("opacidad4",0.5f);
                 editor.putInt("tiempomaximo",120);
 
-                editor.commit();
+                editor.commit();*/
                 fragTran_Creditos.commit();
                 //fragmentTransaction.commit();
                 break;

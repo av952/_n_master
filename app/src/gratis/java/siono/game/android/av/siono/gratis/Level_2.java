@@ -248,6 +248,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         //SE ASIGNA A UNA VARIABLE DE TIPO ENTERO EL VALOR OBTENIDO DE LO SEGUNDOS EN CRONOMETRO 2
         int traedato  = cronometro_2.get_seconds();
+        int nivelactual =2;
 
 
         if(i==0){
@@ -260,7 +261,7 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
         intent.putExtra("respuesta",i);
         intent.putExtra("cronometro2",traedato);
         //con esta linea le paso a la califiacion el nivel en el que me encuentro para tener records diferentes por nivel
-        intent.putExtra("queniveles",2);
+        intent.putExtra("queniveles",nivelactual);
 
         //SE PAUSA EL CRONOMETRO DEL NUEVO ILO CREADO
         //cronometro.pause();
