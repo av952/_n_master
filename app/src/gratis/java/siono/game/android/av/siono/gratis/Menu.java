@@ -83,7 +83,7 @@ Frag_home.OnFragmentInteractionListener{
                 editor.putBoolean("activacion_level4",false);
                 editor.putInt("cuanta_estrella",0);
                 editor.putFloat("opacidad2",0.5f);
-                editor.putFloat("opacidad3",0.5f);
+                editor.putFloat("opacidad3",0.5f);e
                 editor.putFloat("opacidad4",0.5f);
                 editor.putInt("tiempomaximo",120);
 

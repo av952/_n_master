@@ -20,6 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+import java.util.Random;
+
 import siono.game.android.av.siono.R;
 
 public class Calificacion extends AppCompatActivity implements Frag_levels.OnFragmentInteractionListener,
@@ -71,6 +77,12 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
 
     //para el dato de charedpreference
     private int tiempoobtenido = 0;
+
+    //publicidad interticial
+    InterstitialAd interstitialAd;
+
+
+    //*********************************************************************************************
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +146,46 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
         colocandoestrellas();
         sonidorespuesta(res);
 
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-7600541404292053/7477090920");
+         publicidad_interticial();
+
     }
+
+    private void publicidad_interticial() {
+
+        AdRequest adrequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        interstitialAd.loadAd(adrequest);
+
+
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdLoaded() {
+
+                Random random = new Random();
+                int ran  = random.nextInt(3);
+                Log.i("publicidad"," #ran"+ran);
+
+                if (ran == 1) {
+                    Log.i("publicidad", "onadloaded");
+                    interstitialAd.show();
+                    super.onAdLoaded();
+                }
+            }
+        });
+
+    }
+
+
+    //fin del oncreate
 
     public void record() {
 
@@ -150,8 +201,6 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
 
         segundos =  " ";
         segundos += getString( R.string.cuentasegundos);
-
-
 
 
         Log.i("prueba",segundos);
