@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +28,8 @@ import siono.game.android.av.siono.Comunicacion_niveles;
 import siono.game.android.av.siono.Cronometro;
 import siono.game.android.av.siono.Cronometro_2;
 import siono.game.android.av.siono.R;
+
+import static siono.game.android.av.siono.R.drawable.btn;
 
 //esto es para la publicidad
 
@@ -62,8 +67,6 @@ Comunicacion_niveles{
 
 
 
-
-
 //comuicacion niveles
     //Levels_all levels_all = new Levels_all();
 
@@ -87,16 +90,15 @@ Comunicacion_niveles{
     SharedPreferences sharedPreferences;
 
 
-
     int traedato;
-
 
     //timer
     CountDownTimer countDownTimer;
-
-
     //interruptor para detener la cuenta atras
     private boolean interruptor;
+
+
+    Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,9 @@ Comunicacion_niveles{
 
         //BUTON PARA PREGUNTA ALEATORIA
         btn_preguntas = (Button)findViewById(R.id.elbotonquepregunta);
+
+        //FULLSCREEN
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         //BOTONES
@@ -164,6 +169,11 @@ Comunicacion_niveles{
         sharedPreferences = getSharedPreferences("guardadodeniveles",Context.MODE_PRIVATE);
 
 
+        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anima_boton_sino);
+        btn_no.startAnimation(animation);
+        btn_si.startAnimation(animation);
+
+
     }
 
     @Override
@@ -179,6 +189,9 @@ Comunicacion_niveles{
                 evaluacion();
                 azar();
 
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
+
                 break;
             case R.id.btnno:
                 countDownTimer.cancel();
@@ -189,6 +202,8 @@ Comunicacion_niveles{
                 evaluacion();
                 azar();
 
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
                 break;
         }
 

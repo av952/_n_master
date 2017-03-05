@@ -7,14 +7,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/home"
         android:layout_height="wrap_content"
         android:id="@+id/btn_levels"
         android:src="@drawable/levels32x32"
         android:paddingTop="10dp"
         android:layout_gravity="center"
+        android:adjustViewBounds="true"
         />
-
 
 
 </FrameLayout>

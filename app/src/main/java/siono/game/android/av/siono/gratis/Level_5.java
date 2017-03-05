@@ -6,6 +6,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ import siono.game.android.av.siono.Cronometro;
 import siono.game.android.av.siono.Cronometro_2;
 import siono.game.android.av.siono.R;
 
-public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles, Frag_home.OnFragmentInteractionListener,
+public class Level_5 extends AppCompatActivity  implements Comunicacion_niveles, Frag_home.OnFragmentInteractionListener,
         Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     private int p,op,cantidad,ran,bien,mal,cuantasvidas,pre;
@@ -61,21 +62,30 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
     private int cant_imagenes;
 
+    //con esto obtengo la suma entre los dos arrays de iamgenes para la valuacion
+    int sumaimagenes= imagenes_level_5_salado.length+imagenes_level_5_dulce.length;
+
+    //imagen random
+    int ran_img;
+
+    //animacion
     Animation animation;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.i("nivel","on create nivel 4");
+        Log.i("nivel","on create nivel 5");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_4);
+        setContentView(R.layout.activity_level_5);
 
         //FULLSCREEN
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         interruptor = true;
-        cuentaatras();
+
 
         btn_no =(ImageView)findViewById(R.id.btnno);
         btn_no.setOnClickListener(this);
@@ -90,10 +100,7 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
         //MI CRONO LO UTILIZO PARA QUE SEA UTILIZADO POR EL NUEVO ILO QUE LLEVA EL TIEMPO
         mi_crono =  (TextView)findViewById(R.id.microno);//es importante hacer el llamado
 
-        //PARA QUE LA PRIMERA IMAGEN SEA RANDOM
-        azar();
-        //LLAMA AL METODO DENTRO DE ESTA CLASE QUE CREA EL NUEVO HILO
-        tiempo();
+
 
         //instanciar
         calificacion = new Calificacion();
@@ -129,10 +136,21 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
         //guardo la cantidad de imagenes es tes variable para utilizarlo en la logica
         cant_imagenes = imagenes_level_4.length;
 
+
         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anima_boton_sino);
         btn_no.startAnimation(animation);
         btn_si.startAnimation(animation);
 
+
+
+
+        //medos llamados*****************************
+        cuentaatras();
+        //PARA QUE LA PRIMERA IMAGEN SEA RANDOM
+        azar();
+        //LLAMA AL METODO DENTRO DE ESTA CLASE QUE CREA EL NUEVO HILO
+        tiempo();
+        //********************************************
 
     }
 
@@ -147,8 +165,8 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
                 cantidad++;
                 evaluacion();
                 azar();
-                btn_no.clearAnimation();
                 btn_si.clearAnimation();
+                btn_no.clearAnimation();
 
                 break;
             case R.id.btnno:
@@ -161,7 +179,6 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
                 azar();
                 btn_si.clearAnimation();
                 btn_no.clearAnimation();
-
                 break;
         }
 
@@ -169,51 +186,78 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
     @Override
     public void evaluacion() {
-        if(p<=7 && op==1 && cantidad<=cant_imagenes-1&& pre==0){//aire/si/aire=si
-            ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
-            bien++;
-        }else if(p<=7 && op==2 && cantidad<=cant_imagenes-1&& pre==0){//aire/no/aire=no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }else if(p<=7 && op==1 && cantidad<=cant_imagenes-1&& (pre==1 || pre ==2)){//aire/si/tierra/agua=no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }else if(p<=7 && op==2 && cantidad<=cant_imagenes-1&& (pre==1 ||pre==2)){//aire/no/tierra/agua=si
-            ok.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
-        }else if(p>7 &&p<=17 && op==1 && cantidad<=cant_imagenes-1&& pre==1){//tierra/si/tierra=si
-            ok.play(flujoDeMusica,1,1,0,0,1);//sp.play(soundID, leftVolume, rightVolume, priority, loop, rate);
-            bien++;
-        }else if(p>7 &&p<=17 && op==2 && cantidad<=cant_imagenes-1&& pre==1){//tierra/no/tierrae=no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }else if(p>7 &&p<=17 && op==1 && cantidad<=imagenesfruver.length-1&& (pre==0 ||pre==2)){//tierra/si/aire/agua=no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }else if(p>7 &&p<=17 && op==2 && cantidad<=cant_imagenes-1&& (pre==0 ||pre==2)){//tierra/no/aire/agua = si
-            ok.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
-        } else if(p>=18 && op==1 && cantidad<=cant_imagenes-1&& pre==2){//agua/si/agua= si
-            ok.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
-        }
-        else if(p>=18 && op==2 && cantidad<=cant_imagenes-1&& pre==2){//agua/no/agua = no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }
-        else if(p>=18 && op==1 && cantidad<=cant_imagenes-1&& (pre==0||pre==1)){//agua/si/tierra/aire = no
-            no.play(flujoDeMusica,1,1,0,0,1);
-            mal++;
-        }
-        else if(p>=18 && op==2 && cantidad<=cant_imagenes-1&& (pre==0||pre==1)){//agua/ni/tierra/aire = si
-            ok.play(flujoDeMusica,1,1,0,0,1);
-            bien++;
+        if (pre==0){
+            Log.i("evaluacion","p=0");
+            evaluacion_dulce();
+        }else if (pre==1){
+            Log.i("evaluacion","p=1");
+            evaluacion_salado();
         }
 
         //SI PERDE SE EJECUTA ESTO------------------------------------------------------------------
+
         quitavidas();
 
     }
+
+    private void evaluacion_salado() {
+
+        switch (op){
+            case 1:
+
+                if (ran_img==1){
+                    Log.i("evaluacion","salado case 1");
+                    ok.play(flujoDeMusica,1,1,0,0,1);
+                    bien++;
+                }else if (ran_img==0){
+                    Log.i("evaluacion","salado case 2");
+                    no.play(flujoDeMusica,1,1,0,0,1);
+                    mal++;
+                }
+                break;
+            case 2:
+                if (ran_img==0){
+                    Log.i("evaluacion","salado case 1");
+                    ok.play(flujoDeMusica,1,1,0,0,1);
+                    bien++;
+                }else if (ran_img==1){
+                    Log.i("evaluacion","salado case 2");
+                    no.play(flujoDeMusica,1,1,0,0,1);
+                    mal++;
+                }
+                break;
+        }
+
+    }
+    private void evaluacion_dulce() {
+
+        switch (op) {
+            case 1:
+
+                if (ran_img==0){
+                    Log.i("evaluacion","salado case 1");
+                    ok.play(flujoDeMusica,1,1,0,0,1);
+                    bien++;
+                }else if (ran_img==1){
+                    Log.i("evaluacion","salado case 2");
+                    no.play(flujoDeMusica,1,1,0,0,1);
+                    mal++;
+                }
+                break;
+            case 2:
+                if (ran_img==1){
+                    Log.i("evaluacion","salado case 1");
+                    ok.play(flujoDeMusica,1,1,0,0,1);
+                    bien++;
+                }else if (ran_img==0){
+                    Log.i("evaluacion","salado case 2");
+                    no.play(flujoDeMusica,1,1,0,0,1);
+                    mal++;
+                }
+                break;
+        }
+    }
+
     @Override
     public void respuestaFinal(int cant) {
         int calif=0;
@@ -245,24 +289,33 @@ public class Level_4 extends AppCompatActivity  implements Comunicacion_niveles,
 
     @Override
     public void azar() {
-        //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
-        pre= random.nextInt(preguntas_level_4.length);
 
-        p = random.nextInt(imagenes_level_4.length);//da una imagen random
-        ran = random.nextInt(preguntas_level_4.length);//pregunta random
-
-        if(cantidad<= imagenes_level_4.length-1){
-            //btn_preguntado.setText(cambio);
+        if (cantidad<=sumaimagenes) {
             btn_preguntado = (Button)findViewById(R.id.elbotonquepregunta);
-            btn_preguntado.setText(preguntas_level_4[pre]);
+            //GENERA UN NUMERO ALEATORIO PARA LA PREGUNTA
+            pre= random.nextInt(preguntas_level_5.length);
+            btn_preguntado.setText(preguntas_level_5[pre]);
 
+            //Doy un numero random para poder determinar si es dulce o salado
+            Random random_imagenes = new Random();
+            ran_img= random_imagenes.nextInt(2);
+            Log.i("random","random img: "+ran_img);
 
-            //img_preg.setImageResource(array_pregunta[pre]);//aleatorio para la pregunta
-            //btn_preguntado.setText("ahora si se le da la regalada gana de funcionar");
-            img_level_2.setImageResource(imagenes_level_4[p]);//aleatorio para la imagen
+            if (ran_img==0){
+                p = random.nextInt(imagenes_level_5_dulce.length);//da una imagen random
+                img_level_2.setImageResource(imagenes_level_5_dulce[p]);//aleatorio para la imagen
+            }else if (ran_img==1){
+                p = random.nextInt(imagenes_level_5_salado.length);//da una imagen random
+                img_level_2.setImageResource(imagenes_level_5_salado[p]);//aleatorio para la imagen
+            }
+            //endregion
+
+            ran = random.nextInt(preguntas_level_5.length);//pregunta random
         }else {
             respuestaFinal(mal);
         }
+
+
 
     }
 

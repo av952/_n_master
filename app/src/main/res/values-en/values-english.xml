@@ -17,6 +17,10 @@
     <string name="aire">¿AERIAL?</string>
     <string name="agua">¿AQUATIC?</string>
 
+    <!--Level five-->
+    <string name="dulce">Sweet?</string>
+    <string name="salado">Salty?</string>
+
     <string name="advertencia_nivel">You do not have enough stars for this level</string>
 
 

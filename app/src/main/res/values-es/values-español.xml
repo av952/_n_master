@@ -18,6 +18,10 @@
     <string name="aire">¿AEREO?</string>
     <string name="agua">¿MARITIMO?</string>
 
+    <!--Level five-->
+    <string name="dulce">¿Dulce?</string>
+    <string name="salado">¿Salado?</string>
+
 
     <string name="advertencia_nivel">No tienes suficientes estrellas para este nivel</string>
 

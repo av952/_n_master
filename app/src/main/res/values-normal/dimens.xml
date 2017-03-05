@@ -5,4 +5,11 @@
     <dimen name="botone_pregunta_ancho">230dp</dimen>
     <dimen name="botone_pregunta_alto">72dp</dimen>
     <dimen name="letra_pregunta">30sp</dimen>
+
+    <dimen name="tam_time">30sp</dimen>
+    <dimen name="vida">76dp</dimen>
+    <dimen name="vida_alto">32dp</dimen>
+
+    <dimen name="home">40dp</dimen>
+
 </resources>

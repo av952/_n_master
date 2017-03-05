@@ -6,4 +6,12 @@
     <dimen name="botone_pregunta_ancho">460dp</dimen>
     <dimen name="botone_pregunta_alto">144dp</dimen>
     <dimen name="letra_pregunta">60sp</dimen>
+
+    <dimen name="tam_time">80sp</dimen>
+    <dimen name="vida">152dp</dimen>
+    <dimen name="vida_alto">64dp</dimen>
+    <dimen name="home">80dp</dimen>
+
+
+
 </resources>

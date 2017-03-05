@@ -70,6 +70,49 @@ public interface Comunicacion_niveles {
             R.drawable.agua_6,R.drawable.agua_7,R.drawable.agua_8
     };
 
+    int[] imagenes_level_5_dulce={
+      R.drawable.dulce01,
+            R.drawable.dulce02,
+            R.drawable.dulce03,
+            R.drawable.dulce04,
+            R.drawable.dulce05,
+            R.drawable.dulce06,
+            R.drawable.dulce07,
+            R.drawable.dulce08,
+            R.drawable.dulce09,
+            R.drawable.dulce10,
+            R.drawable.dulce11,
+            R.drawable.dulce12,
+            R.drawable.dulce13,
+            R.drawable.dulce14,
+            R.drawable.dulce15,
+            R.drawable.dulce15,
+            R.drawable.dulce17,
+            R.drawable.dulce18,
+            R.drawable.dulce19,
+            R.drawable.dulce21,
+            R.drawable.dulce22,
+            R.drawable.dulce23,
+            R.drawable.dulce24,
+            R.drawable.dulce25,
+
+    };
+
+    int[] imagenes_level_5_salado={
+      R.drawable.salado01,
+            R.drawable.salado03,
+            R.drawable.salado04,
+            R.drawable.salado05,
+            R.drawable.salado06,
+            R.drawable.salado07,
+            R.drawable.salado08,
+            R.drawable.salado09,
+            R.drawable.salado10,
+            R.drawable.salado11,
+            R.drawable.salado12
+    };
+
+
     //preguntas level 4
     int[]preguntas_level_4={
             R.string.aire,
@@ -89,6 +132,11 @@ public interface Comunicacion_niveles {
             R.string.terrestre,
             R.string.maritimo,
             R.string.aereo,
+    };
+
+    int[] preguntas_level_5={
+            R.string.dulce,
+            R.string.salado
     };
 
 

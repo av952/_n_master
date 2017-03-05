@@ -15,6 +15,7 @@ import android.service.quicksettings.Tile;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,6 +89,8 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificacion);
+        //FULLSCREEN
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         //toma el paquete de datos de la actividad que la llamo
@@ -407,7 +410,7 @@ public class Calificacion extends AppCompatActivity implements Frag_levels.OnFra
             super.onBackPressed();
             return;
         } else {
-            Toast.makeText(this, "Vuelve a aprecionar para ir a niveles", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vuelve a aprecionar para salir", Toast.LENGTH_SHORT).show();
         }
         tiempoprimerclick = System.currentTimeMillis();
     }

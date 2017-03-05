@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,11 +58,16 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
 
     private boolean interruptor;
 
+    Animation animation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_3);
+
+        //FULLSCREEN
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         interruptor = true;
         cuentaatras();
@@ -111,6 +119,11 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
+        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anima_boton_sino);
+        btn_no.startAnimation(animation);
+        btn_si.startAnimation(animation);
     }
 
     @Override
@@ -125,6 +138,9 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
                 evaluacion();
                 azar();
 
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
+
                 break;
             case R.id.btnno:
                 countDownTimer.cancel();
@@ -134,6 +150,9 @@ Frag_levels.OnFragmentInteractionListener,View.OnClickListener{
                 cantidad++;
                 evaluacion();
                 azar();
+
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
 
                 break;
         }

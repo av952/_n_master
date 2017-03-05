@@ -8,7 +8,9 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +23,7 @@ import siono.game.android.av.siono.R;
 
 public class Levels_all extends AppCompatActivity implements View.OnClickListener,Frag_home.OnFragmentInteractionListener{
 
-    private ImageView btn_1,btn_2,btn_3,btn_4;
+    private ImageView btn_1,btn_2,btn_3,btn_4,btn_5;
     private final int intervalo =2000;
     private long tiempoprimerclick;
     private SoundPool click;
@@ -29,7 +31,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     private TextView tv_estrella;
 
     //boleanos paraa activacion de niveles
-    boolean key_level2,key_level3,key_level4;
+    boolean key_level2,key_level3,key_level4,key_level5;
     //-------------------------------
 
 
@@ -46,11 +48,14 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels_all);
+        //FULLSCREEN
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //activacion booleanos
         key_level2=false;
         key_level3=false;
         key_level4=false;
+        key_level5=false;
 
         btn_1 =(ImageView)findViewById(R.id.btn_level_1);
         btn_1.setOnClickListener(this);
@@ -60,6 +65,8 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         btn_3.setOnClickListener(this);
         btn_4 = (ImageView)findViewById(R.id.btn_level_4);
         btn_4.setOnClickListener(this);
+        btn_5 = (ImageView)findViewById(R.id.btn_level_5);
+        btn_5.setOnClickListener(this);
 
 
         tv_estrella = (TextView)findViewById(R.id.tv_estrellas);
@@ -75,12 +82,13 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         estrellas = sharedPreferences.getInt("cuanta_estrella",0);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("cuanta_estrella",100);
+        editor.putInt("cuanta_estrella",9);
         editor.commit();
 
         key_level2 = sharedPreferences.getBoolean("activacion_level2",false);
         key_level3 = sharedPreferences.getBoolean("activacion_level3",false);
         key_level4 = sharedPreferences.getBoolean("activacion_level4",false);
+        key_level5 = sharedPreferences.getBoolean("activacion_level5",false);
 
         cantidadestrellas(estrellas);
 
@@ -131,6 +139,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_level_4:
                 if(key_level4==true){
+                    Log.i("nivel","nivel cuatro");
                     click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
                     Intent i4 = new Intent(this,Level_4.class);
                     startActivity(i4);
@@ -139,6 +148,19 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
                     op=4;
                     entrada_nivel();
                 }
+                break;
+
+            case R.id.btn_level_5:
+                if(key_level5==true){
+                    click.play(flujoDeMusica,0.5f,0.5f,0,0,1);
+                    Intent i5 = new Intent(this,Level_5.class);
+                    startActivity(i5);
+                    finish();
+                }else {
+                    op=5;
+                    entrada_nivel();
+                }
+                break;
 
 
         }
@@ -181,6 +203,17 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
             key_level4 = sharedPreferences.getBoolean("activacion_level4",false);
             cambioopacidad();
 
+        }else if (estrellas>=9&&op==5){
+
+            SharedPreferences.Editor editor =sharedPreferences.edit();
+            editor.putInt("cuanta_estrella",estrellas-9);
+            editor.putBoolean("activacion_level5",true);
+            editor.putFloat("opacidad5",1f);
+            editor.commit();
+
+            key_level5 = sharedPreferences.getBoolean("activacion_level5",false);
+            cambioopacidad();
+
         } else {
             Toast.makeText(this,R.string.advertencia_nivel,Toast.LENGTH_SHORT).show();
         }
@@ -212,11 +245,13 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         float opaco = sharedPreferences.getFloat("opacidad2",0.5f);
         float opaco2 = sharedPreferences.getFloat("opacidad3",0.5f);
         float opaco3 = sharedPreferences.getFloat("opacidad4",0.5f);
+        float opaco4 = sharedPreferences.getFloat("opacidad5",0.5f);
 
         //asigna opacidad segun el dato que recoge  en las lineas de arriba
         btn_2.setAlpha(opaco);
         btn_3.setAlpha(opaco2);
         btn_4.setAlpha(opaco3);
+        btn_5.setAlpha(opaco4);
 
     }
 

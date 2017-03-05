@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,10 +66,16 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
     //sharepreference
     SharedPreferences sharedPreferences;
 
+
+    Animation animation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_2);
+
+        //FULLSCREEN
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         interruptor = true;
@@ -123,6 +132,10 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
 
         //sharepreferences
         sharedPreferences = getSharedPreferences("guardadodeniveles", Context.MODE_PRIVATE);
+
+        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anima_boton_sino);
+        btn_no.startAnimation(animation);
+        btn_si.startAnimation(animation);
 
 
     }
@@ -300,6 +313,9 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
                 evaluacion();
                 azar();
 
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
+
                 break;
             case R.id.btnno:
                 countDownTimer.cancel();
@@ -309,6 +325,9 @@ Frag_home.OnFragmentInteractionListener,Frag_levels.OnFragmentInteractionListene
                 cantidad++;
                 evaluacion();
                 azar();
+
+                btn_no.clearAnimation();
+                btn_si.clearAnimation();
 
                 break;
         }

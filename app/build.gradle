@@ -16,7 +16,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -31,9 +31,9 @@ android {
                 versionName "1.0-depago"
 
             }
-            gratis{
+            gratis {
                 applicationId "siono.game.android.av.siono.gratis"
-                versionName "1.0-free"
+                versionName "1.1-free"
 
             }
         }
@@ -54,6 +54,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-ads:10.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    testCompile 'junit:junit:4.12'
 }
