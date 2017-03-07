@@ -82,7 +82,7 @@ public class Levels_all extends AppCompatActivity implements View.OnClickListene
         estrellas = sharedPreferences.getInt("cuanta_estrella",0);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("cuanta_estrella",9);
+        //editor.putInt("cuanta_estrella",9);
         editor.commit();
 
         key_level2 = sharedPreferences.getBoolean("activacion_level2",false);
